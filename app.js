@@ -77,7 +77,7 @@ function renderCol(group) {
   const top = group.topToday;
   const topHtml = top
     ? `
-      <div class="top-title" title="${escapeHtml(top.title)}">${escapeHtml(truncate(top.title, isMobile() ? 10 : 18))}</div>
+      <div class="top-title" title="${escapeHtml(top.title)}">${escapeHtml(truncate(top.title, 16))}</div>
       <div class="top-owner">${top.owner ? 'UP主：' + escapeHtml(top.owner) : ''}</div>
       <div class="delta ${deltaClass(top.delta)}">播放 ${fmtDelta(top.delta)}</div>`
     : `<div class="muted">暂无数据</div>`;
@@ -179,12 +179,7 @@ function renderChart() {
       trigger: 'axis',
       formatter: axisTooltip,
     },
-    legend: {
-      type: 'plain',
-      bottom: 0,
-      textStyle: { color: '#b3859a', fontSize: 12 },
-    },
-    grid: { left: 80, right: 30, top: 30, bottom: 92 },
+    grid: { left: 0, right: 12, top: 24, bottom: 36, containLabel: true },
     xAxis: {
       type: 'category',
       data: times,
@@ -193,8 +188,6 @@ function renderChart() {
     },
     yAxis: {
       type: 'value',
-      name: '累计涨幅',
-      nameTextStyle: { color: '#b3859a' },
       axisLabel: { color: '#b3859a' },
       splitLine: { lineStyle: { color: 'rgba(90,58,75,.08)' } },
     },
