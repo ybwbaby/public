@@ -29,7 +29,18 @@
       <div class="panel-head">
         <h2>当日涨幅趋势（两家对比）</h2>
         <div class="panel-controls">
+          <div class="toggle-group" id="rangeGroup" title="时间维度">
+            <button class="toggle-btn active" data-range="day">日</button>
+            <button class="toggle-btn" data-range="week">周</button>
+            <button class="toggle-btn" data-range="all">全部</button>
+            <button class="toggle-btn" data-range="custom">自定义</button>
+          </div>
           <select id="dateSelect" class="select" title="筛选日期"></select>
+          <div id="customRange" class="custom-range" style="display:none">
+            <input type="date" id="startDate" class="date-input" />
+            <span class="range-sep">~</span>
+            <input type="date" id="endDate" class="date-input" />
+          </div>
           <div class="toggle-group" id="granGroup" title="统计维度">
             <button class="toggle-btn active" data-gran="600">10分钟</button>
             <button class="toggle-btn" data-gran="1800">半小时</button>

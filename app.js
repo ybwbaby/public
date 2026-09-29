@@ -1,6 +1,6 @@
 'use strict';
 
-const state = { data: null, selectedDate: null, gran: 600 };
+const state = { data: null, selectedDate: null, gran: 600, range: 'day', startDate: null, endDate: null };
 let chart = null;
 let chartEl = null;
 
@@ -104,6 +104,59 @@ function updateDateSelect() {
       return `<option value="${d}"${selected}>${formatDateLabel(d)}${latest}</option>`;
     })
     .join('');
+}
+
+function getRangeDates() {
+  const dates = (state.data && state.data.dates) || [];
+  if (state.range === 'week') return dates.slice(-7);
+  if (state.range === 'custom') {
+    const s = state.startDate || dates[0] || '';
+    const e = state.endDate || dates[dates.length - 1] || '';
+    return dates.filter((d) => d >= s && d <= e);
+  }
+  return dates; // all
+}
+
+function buildDailyTrend(dates) {
+  const d = state.data;
+  const days = (d && d.days) || {};
+  const latestKey = (d && d.dates && d.dates[d.dates.length - 1]) || '';
+  const ref = days[latestKey];
+  const series = [];
+  if (ref) {
+    for (const g of ref.groups || []) {
+      for (const v of g.videos || []) {
+        const trend = dates.map((date) => {
+          const day = days[date];
+          const g2 = day && (day.groups || []).find((x) => x.name === g.name);
+          const v2 = g2 && (g2.videos || []).find((x) => x.bvid === v.bvid);
+          return { t: date, cum: v2 ? v2.viewTodayDelta : 0 };
+        });
+        series.push({ name: v.title, group: g.name, trend });
+      }
+    }
+  }
+  return { times: dates, series };
+}
+
+function updateRangeControls() {
+  const range = state.range;
+  const dateSel = $('dateSelect');
+  const custom = $('customRange');
+  const gran = $('granGroup');
+  if (dateSel) dateSel.style.display = range === 'day' ? '' : 'none';
+  if (custom) custom.style.display = range === 'custom' ? '' : 'none';
+  if (gran) gran.style.display = range === 'day' ? '' : 'none';
+
+  if (range === 'custom' && custom) {
+    const dates = (state.data && state.data.dates) || [];
+    if (!state.startDate) state.startDate = dates[0] || '';
+    if (!state.endDate) state.endDate = dates[dates.length - 1] || '';
+    const s = $('startDate');
+    const e = $('endDate');
+    if (s) { s.value = state.startDate; if (dates.length) { s.min = dates[0]; s.max = dates[dates.length - 1]; } }
+    if (e) { e.value = state.endDate; if (dates.length) { e.min = dates[0]; e.max = dates[dates.length - 1]; } }
+  }
 }
 
 /* ------------------------------ 左右两列 ------------------------------ */
@@ -212,28 +265,49 @@ function aggregateTrend(trend, granSec) {
 }
 
 function renderChart() {
-  const day = activeDay();
-  if (!day) return;
   chartEl = chartEl || $('chart');
   initChart();
   if (!chart) return;
 
-  const trend = aggregateTrend(day.trend, state.gran);
-  const times = (trend.times || []).map((t) => fmtTime(t));
-  const series = (trend.series || []).map((s) => {
-    const map = new Map((s.trend || []).map((p) => [p.t, p.cum]));
-    const color = s.group === '王橹杰' ? '#2dd4bf' : '#f472b6';
-    return {
-      name: truncate(s.name, 20),
-      type: 'line',
-      symbol: 'circle',
-      symbolSize: 3,
-      lineStyle: { width: 2, color },
-      itemStyle: { color },
-      emphasis: { focus: 'series' },
-      data: (trend.times || []).map((t) => (map.has(t) ? map.get(t) : null)),
-    };
-  });
+  let times;
+  let series;
+  if (state.range === 'day') {
+    const day = activeDay();
+    if (!day) return;
+    const trend = aggregateTrend(day.trend, state.gran);
+    times = (trend.times || []).map((t) => fmtTime(t));
+    series = (trend.series || []).map((s) => {
+      const map = new Map((s.trend || []).map((p) => [p.t, p.cum]));
+      const color = s.group === '王橹杰' ? '#2dd4bf' : '#f472b6';
+      return {
+        name: truncate(s.name, 20),
+        type: 'line',
+        symbol: 'circle',
+        symbolSize: 3,
+        lineStyle: { width: 2, color },
+        itemStyle: { color },
+        emphasis: { focus: 'series' },
+        data: (trend.times || []).map((t) => (map.has(t) ? map.get(t) : null)),
+      };
+    });
+  } else {
+    const daily = buildDailyTrend(getRangeDates());
+    times = (daily.times || []).map((d) => formatDateLabel(d));
+    series = (daily.series || []).map((s) => {
+      const map = new Map((s.trend || []).map((p) => [p.t, p.cum]));
+      const color = s.group === '王橹杰' ? '#2dd4bf' : '#f472b6';
+      return {
+        name: truncate(s.name, 20),
+        type: 'line',
+        symbol: 'circle',
+        symbolSize: 4,
+        lineStyle: { width: 2, color },
+        itemStyle: { color },
+        emphasis: { focus: 'series' },
+        data: (daily.times || []).map((d) => (map.has(d) ? map.get(d) : null)),
+      };
+    });
+  }
 
   const option = {
     backgroundColor: 'transparent',
@@ -281,6 +355,7 @@ function axisTooltip(params) {
 function render() {
   updateStatus();
   updateDateSelect();
+  updateRangeControls();
   renderCols();
   renderChart();
 }
@@ -291,6 +366,28 @@ if (refreshBtn) refreshBtn.onclick = fetchData;
 const dateSelect = $('dateSelect');
 if (dateSelect) dateSelect.onchange = () => {
   state.selectedDate = dateSelect.value;
+  renderChart();
+};
+
+const rangeGroup = $('rangeGroup');
+if (rangeGroup) rangeGroup.onclick = (e) => {
+  const btn = e.target.closest('[data-range]');
+  if (!btn) return;
+  state.range = btn.dataset.range;
+  rangeGroup.querySelectorAll('.toggle-btn').forEach((b) => b.classList.remove('active'));
+  btn.classList.add('active');
+  updateRangeControls();
+  renderChart();
+};
+
+const startDate = $('startDate');
+if (startDate) startDate.onchange = () => {
+  state.startDate = startDate.value;
+  renderChart();
+};
+const endDate = $('endDate');
+if (endDate) endDate.onchange = () => {
+  state.endDate = endDate.value;
   renderChart();
 };
 
