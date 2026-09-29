@@ -1,6 +1,7 @@
 {
   "dates": [
-    "2026-09-29"
+    "2026-09-29",
+    "2026-09-30"
   ],
   "days": {
     "2026-09-29": {
@@ -1795,6 +1796,149 @@
           }
         ]
       }
+    },
+    "2026-09-30": {
+      "groups": [
+        {
+          "name": "杨博文",
+          "totalTodayDelta": 258,
+          "topToday": {
+            "bvid": "BV15egs6pEJp",
+            "title": "杨博文｜Whiplash 2机位精剪 直拍 fancam｜4K60｜260813",
+            "owner": "LOST_杨博文",
+            "delta": 93
+          },
+          "videos": [
+            {
+              "bvid": "BV15egs6pEJp",
+              "title": "杨博文｜Whiplash 2机位精剪 直拍 fancam｜4K60｜260813",
+              "owner": "LOST_杨博文",
+              "viewCur": 703832,
+              "viewDelta": 93,
+              "viewTodayDelta": 93
+            },
+            {
+              "bvid": "BV1c3gF6wERf",
+              "title": "【杨博文】元气甜度爆表！摇曳4k横屏直拍",
+              "owner": "游园会_杨博文",
+              "viewCur": 657388,
+              "viewDelta": 81,
+              "viewTodayDelta": 81
+            },
+            {
+              "bvid": "BV1mX8z6NEzz",
+              "title": "【4K精剪】管他什么音乐 | 杨博文直拍 | 260816",
+              "owner": "underthepoplar",
+              "viewCur": 602160,
+              "viewDelta": 84,
+              "viewTodayDelta": 84
+            }
+          ]
+        },
+        {
+          "name": "王橹杰",
+          "totalTodayDelta": 664,
+          "topToday": {
+            "bvid": "BV1FNb16BEYZ",
+            "title": "王橹杰|《黑苹果》4k三机位直拍",
+            "owner": "Somniel_王橹杰",
+            "delta": 335
+          },
+          "videos": [
+            {
+              "bvid": "BV1tmbY6nEQe",
+              "title": "【8K直拍｜王橹杰FOCUS】虚拟",
+              "owner": "Morpheus秩序外_王橹杰",
+              "viewCur": 970172,
+              "viewDelta": 318,
+              "viewTodayDelta": 318
+            },
+            {
+              "bvid": "BV1ehgs6sEbV",
+              "title": "【王橹杰FOCUS｜4K直拍】100 Ways",
+              "owner": "Morpheus秩序外_王橹杰",
+              "viewCur": 411911,
+              "viewDelta": 11,
+              "viewTodayDelta": 11
+            },
+            {
+              "bvid": "BV1FNb16BEYZ",
+              "title": "王橹杰|《黑苹果》4k三机位直拍",
+              "owner": "Somniel_王橹杰",
+              "viewCur": 310385,
+              "viewDelta": 335,
+              "viewTodayDelta": 335
+            }
+          ]
+        }
+      ],
+      "trend": {
+        "times": [
+          1790698200
+        ],
+        "series": [
+          {
+            "name": "杨博文｜Whiplash 2机位精剪 直拍 fancam｜4K60｜260813",
+            "group": "杨博文",
+            "trend": [
+              {
+                "t": 1790698200,
+                "cum": 93
+              }
+            ]
+          },
+          {
+            "name": "【杨博文】元气甜度爆表！摇曳4k横屏直拍",
+            "group": "杨博文",
+            "trend": [
+              {
+                "t": 1790698200,
+                "cum": 81
+              }
+            ]
+          },
+          {
+            "name": "【4K精剪】管他什么音乐 | 杨博文直拍 | 260816",
+            "group": "杨博文",
+            "trend": [
+              {
+                "t": 1790698200,
+                "cum": 84
+              }
+            ]
+          },
+          {
+            "name": "【8K直拍｜王橹杰FOCUS】虚拟",
+            "group": "王橹杰",
+            "trend": [
+              {
+                "t": 1790698200,
+                "cum": 318
+              }
+            ]
+          },
+          {
+            "name": "【王橹杰FOCUS｜4K直拍】100 Ways",
+            "group": "王橹杰",
+            "trend": [
+              {
+                "t": 1790698200,
+                "cum": 11
+              }
+            ]
+          },
+          {
+            "name": "王橹杰|《黑苹果》4k三机位直拍",
+            "group": "王橹杰",
+            "trend": [
+              {
+                "t": 1790698200,
+                "cum": 335
+              }
+            ]
+          }
+        ]
+      }
     }
   },
   "history": [
@@ -2137,6 +2281,11 @@
           "t": 1790697600,
           "d": "2026-09-29",
           "view": 703739
+        },
+        {
+          "t": 1790698200,
+          "d": "2026-09-30",
+          "view": 703832
         }
       ]
     },
@@ -2479,6 +2628,11 @@
           "t": 1790697600,
           "d": "2026-09-29",
           "view": 657307
+        },
+        {
+          "t": 1790698200,
+          "d": "2026-09-30",
+          "view": 657388
         }
       ]
     },
@@ -2821,6 +2975,11 @@
           "t": 1790697600,
           "d": "2026-09-29",
           "view": 602076
+        },
+        {
+          "t": 1790698200,
+          "d": "2026-09-30",
+          "view": 602160
         }
       ]
     },
@@ -3163,6 +3322,11 @@
           "t": 1790697600,
           "d": "2026-09-29",
           "view": 969854
+        },
+        {
+          "t": 1790698200,
+          "d": "2026-09-30",
+          "view": 970172
         }
       ]
     },
@@ -3505,6 +3669,11 @@
           "t": 1790697600,
           "d": "2026-09-29",
           "view": 411900
+        },
+        {
+          "t": 1790698200,
+          "d": "2026-09-30",
+          "view": 411911
         }
       ]
     },
@@ -3847,10 +4016,15 @@
           "t": 1790697600,
           "d": "2026-09-29",
           "view": 310050
+        },
+        {
+          "t": 1790698200,
+          "d": "2026-09-30",
+          "view": 310385
         }
       ]
     }
   ],
-  "lastCollect": 1790697600,
+  "lastCollect": 1790698200,
   "collecting": false
 }
