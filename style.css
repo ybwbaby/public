@@ -90,13 +90,13 @@ main{padding:24px 20px 60px;max-width:1260px;margin:0 auto;position:relative;z-i
 .table-wrap::-webkit-scrollbar{width:5px}
 .table-wrap::-webkit-scrollbar-thumb{background:rgba(236,72,153,.25);border-radius:99px}
 table{width:100%;border-collapse:separate;border-spacing:0;white-space:nowrap}
-th,td{padding:12px 10px;text-align:left;font-size:13px;font-variant-numeric:tabular-nums}
+th,td{padding:12px 10px;text-align:right;font-size:13px;font-variant-numeric:tabular-nums}
 th:nth-child(n+2),td:nth-child(n+2){padding-left:4px;padding-right:4px}
 thead th{
   color:var(--muted);background:rgba(236,72,153,.05);
   position:sticky;top:0;backdrop-filter:blur(24px);
   border-bottom:1px solid rgba(236,72,153,.12);
-  font-weight:600;font-size:12px;text-align:left;
+  font-weight:600;font-size:12px;
 }
 th:first-child,td:first-child{text-align:left}
 td.title-cell{white-space:normal}
