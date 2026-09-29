@@ -90,6 +90,7 @@ function renderCol(group) {
           <div class="bv">${escapeHtml(v.bvid)}</div>
         </td>
         <td class="num">${fmt(v.viewCur)}</td>
+        <td class="num"><span class="delta ${deltaClass(v.viewDelta)}">${fmtDelta(v.viewDelta)}</span></td>
         <td class="num"><span class="delta ${deltaClass(v.viewTodayDelta)}">${fmtDelta(v.viewTodayDelta)}</span></td>
       </tr>`)
     .join('');
@@ -111,13 +112,14 @@ function renderCol(group) {
     </div>
 
     <div class="video-list">
-      <div class="list-head">各视频播放量 / 当日新增</div>
+      <div class="list-head">各视频播放量 / 时段新增 / 当日新增</div>
       <div class="table-wrap">
         <table>
           <thead>
             <tr>
               <th class="title-col">视频</th>
               <th>播放量</th>
+              <th>时段新增</th>
               <th>当日新增</th>
             </tr>
           </thead>

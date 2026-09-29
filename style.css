@@ -34,7 +34,7 @@ body::before{
   position:sticky;top:0;z-index:10;
   backdrop-filter:blur(24px);
 }
-.brand-block{display:flex;flex-direction:column;gap:4px;flex:1}
+.brand-block{display:flex;flex-direction:column;gap:8px;flex:1}
 .brand{font-size:17px;font-weight:700;color:var(--text-light)}
 .status{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px}
 .badge{background:var(--accent);color:#fff;padding:2px 8px;border-radius:10px;font-size:12px}
