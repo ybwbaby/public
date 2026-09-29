@@ -2,73 +2,73 @@
   "groups": [
     {
       "name": "杨博文",
-      "totalTodayDelta": 979,
+      "totalTodayDelta": 1322,
       "topToday": {
         "bvid": "BV1c3gF6wERf",
         "title": "【杨博文】元气甜度爆表！摇曳4k横屏直拍",
         "owner": "游园会_杨博文",
-        "delta": 341
+        "delta": 449
       },
       "videos": [
         {
           "bvid": "BV15egs6pEJp",
           "title": "杨博文｜Whiplash 2机位精剪 直拍 fancam｜4K60｜260813",
           "owner": "LOST_杨博文",
-          "viewCur": 697017,
-          "viewDelta": 97,
-          "viewTodayDelta": 323
+          "viewCur": 697126,
+          "viewDelta": 109,
+          "viewTodayDelta": 432
         },
         {
           "bvid": "BV1c3gF6wERf",
           "title": "【杨博文】元气甜度爆表！摇曳4k横屏直拍",
           "owner": "游园会_杨博文",
-          "viewCur": 650418,
-          "viewDelta": 104,
-          "viewTodayDelta": 341
+          "viewCur": 650526,
+          "viewDelta": 108,
+          "viewTodayDelta": 449
         },
         {
           "bvid": "BV1mX8z6NEzz",
           "title": "【4K精剪】管他什么音乐 | 杨博文直拍 | 260816",
           "owner": "underthepoplar",
-          "viewCur": 595064,
-          "viewDelta": 104,
-          "viewTodayDelta": 315
+          "viewCur": 595190,
+          "viewDelta": 126,
+          "viewTodayDelta": 441
         }
       ]
     },
     {
       "name": "王橹杰",
-      "totalTodayDelta": 2109,
+      "totalTodayDelta": 2814,
       "topToday": {
         "bvid": "BV1tmbY6nEQe",
         "title": "【8K直拍｜王橹杰FOCUS】虚拟",
         "owner": "Morpheus秩序外_王橹杰",
-        "delta": 1112
+        "delta": 1490
       },
       "videos": [
         {
           "bvid": "BV1tmbY6nEQe",
           "title": "【8K直拍｜王橹杰FOCUS】虚拟",
           "owner": "Morpheus秩序外_王橹杰",
-          "viewCur": 944090,
-          "viewDelta": 346,
-          "viewTodayDelta": 1112
+          "viewCur": 944468,
+          "viewDelta": 378,
+          "viewTodayDelta": 1490
         },
         {
           "bvid": "BV1ehgs6sEbV",
           "title": "【王橹杰FOCUS｜4K直拍】100 Ways",
           "owner": "Morpheus秩序外_王橹杰",
-          "viewCur": 411095,
+          "viewCur": 411106,
           "viewDelta": 11,
-          "viewTodayDelta": 28
+          "viewTodayDelta": 39
         },
         {
           "bvid": "BV1FNb16BEYZ",
           "title": "王橹杰|《黑苹果》4k三机位直拍",
           "owner": "Somniel_王橹杰",
-          "viewCur": 287265,
-          "viewDelta": 329,
-          "viewTodayDelta": 969
+          "viewCur": 287581,
+          "viewDelta": 316,
+          "viewTodayDelta": 1285
         }
       ]
     }
@@ -77,7 +77,8 @@
     "times": [
       1790657437,
       1790658600,
-      1790659200
+      1790659200,
+      1790659800
     ],
     "series": [
       {
@@ -95,6 +96,10 @@
           {
             "t": 1790659200,
             "cum": 323
+          },
+          {
+            "t": 1790659800,
+            "cum": 432
           }
         ]
       },
@@ -113,6 +118,10 @@
           {
             "t": 1790659200,
             "cum": 341
+          },
+          {
+            "t": 1790659800,
+            "cum": 449
           }
         ]
       },
@@ -131,6 +140,10 @@
           {
             "t": 1790659200,
             "cum": 315
+          },
+          {
+            "t": 1790659800,
+            "cum": 441
           }
         ]
       },
@@ -149,6 +162,10 @@
           {
             "t": 1790659200,
             "cum": 1112
+          },
+          {
+            "t": 1790659800,
+            "cum": 1490
           }
         ]
       },
@@ -167,6 +184,10 @@
           {
             "t": 1790659200,
             "cum": 28
+          },
+          {
+            "t": 1790659800,
+            "cum": 39
           }
         ]
       },
@@ -185,11 +206,15 @@
           {
             "t": 1790659200,
             "cum": 969
+          },
+          {
+            "t": 1790659800,
+            "cum": 1285
           }
         ]
       }
     ]
   },
-  "lastCollect": 1790659200,
+  "lastCollect": 1790659800,
   "collecting": false
 }
