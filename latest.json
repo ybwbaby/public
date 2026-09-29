@@ -7,73 +7,73 @@
       "groups": [
         {
           "name": "杨博文",
-          "totalTodayDelta": 3560,
+          "totalTodayDelta": 3867,
           "topToday": {
             "bvid": "BV1mX8z6NEzz",
             "title": "【4K精剪】管他什么音乐 | 杨博文直拍 | 260816",
             "owner": "underthepoplar",
-            "delta": 1202
+            "delta": 1314
           },
           "videos": [
             {
               "bvid": "BV15egs6pEJp",
               "title": "杨博文｜Whiplash 2机位精剪 直拍 fancam｜4K60｜260813",
               "owner": "LOST_杨博文",
-              "viewCur": 697851,
-              "viewDelta": 103,
-              "viewTodayDelta": 1157
+              "viewCur": 697944,
+              "viewDelta": 93,
+              "viewTodayDelta": 1250
             },
             {
               "bvid": "BV1c3gF6wERf",
               "title": "【杨博文】元气甜度爆表！摇曳4k横屏直拍",
               "owner": "游园会_杨博文",
-              "viewCur": 651278,
-              "viewDelta": 112,
-              "viewTodayDelta": 1201
+              "viewCur": 651380,
+              "viewDelta": 102,
+              "viewTodayDelta": 1303
             },
             {
               "bvid": "BV1mX8z6NEzz",
               "title": "【4K精剪】管他什么音乐 | 杨博文直拍 | 260816",
               "owner": "underthepoplar",
-              "viewCur": 595951,
-              "viewDelta": 105,
-              "viewTodayDelta": 1202
+              "viewCur": 596063,
+              "viewDelta": 112,
+              "viewTodayDelta": 1314
             }
           ]
         },
         {
           "name": "王橹杰",
-          "totalTodayDelta": 8105,
+          "totalTodayDelta": 8917,
           "topToday": {
             "bvid": "BV1tmbY6nEQe",
             "title": "【8K直拍｜王橹杰FOCUS】虚拟",
             "owner": "Morpheus秩序外_王橹杰",
-            "delta": 4245
+            "delta": 4672
           },
           "videos": [
             {
               "bvid": "BV1tmbY6nEQe",
               "title": "【8K直拍｜王橹杰FOCUS】虚拟",
               "owner": "Morpheus秩序外_王橹杰",
-              "viewCur": 947223,
-              "viewDelta": 431,
-              "viewTodayDelta": 4245
+              "viewCur": 947650,
+              "viewDelta": 427,
+              "viewTodayDelta": 4672
             },
             {
               "bvid": "BV1ehgs6sEbV",
               "title": "【王橹杰FOCUS｜4K直拍】100 Ways",
               "owner": "Morpheus秩序外_王橹杰",
-              "viewCur": 411181,
-              "viewDelta": 16,
-              "viewTodayDelta": 114
+              "viewCur": 411192,
+              "viewDelta": 11,
+              "viewTodayDelta": 125
             },
             {
               "bvid": "BV1FNb16BEYZ",
               "title": "王橹杰|《黑苹果》4k三机位直拍",
               "owner": "Somniel_王橹杰",
-              "viewCur": 290042,
-              "viewDelta": 391,
-              "viewTodayDelta": 3746
+              "viewCur": 290416,
+              "viewDelta": 374,
+              "viewTodayDelta": 4120
             }
           ]
         }
@@ -90,7 +90,8 @@
           1790662200,
           1790662800,
           1790663400,
-          1790664000
+          1790664000,
+          1790664600
         ],
         "series": [
           {
@@ -140,6 +141,10 @@
               {
                 "t": 1790664000,
                 "cum": 1157
+              },
+              {
+                "t": 1790664600,
+                "cum": 1250
               }
             ]
           },
@@ -190,6 +195,10 @@
               {
                 "t": 1790664000,
                 "cum": 1201
+              },
+              {
+                "t": 1790664600,
+                "cum": 1303
               }
             ]
           },
@@ -240,6 +249,10 @@
               {
                 "t": 1790664000,
                 "cum": 1202
+              },
+              {
+                "t": 1790664600,
+                "cum": 1314
               }
             ]
           },
@@ -290,6 +303,10 @@
               {
                 "t": 1790664000,
                 "cum": 4245
+              },
+              {
+                "t": 1790664600,
+                "cum": 4672
               }
             ]
           },
@@ -340,6 +357,10 @@
               {
                 "t": 1790664000,
                 "cum": 114
+              },
+              {
+                "t": 1790664600,
+                "cum": 125
               }
             ]
           },
@@ -390,6 +411,10 @@
               {
                 "t": 1790664000,
                 "cum": 3746
+              },
+              {
+                "t": 1790664600,
+                "cum": 4120
               }
             ]
           }
@@ -397,6 +422,6 @@
       }
     }
   },
-  "lastCollect": 1790664000,
+  "lastCollect": 1790664600,
   "collecting": false
 }
