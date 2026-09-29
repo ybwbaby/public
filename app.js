@@ -68,14 +68,13 @@ function updateStatus() {
     `上次采集：${fmtTime(d.lastCollect)} · 每 10 分钟自动采集`;
 }
 
-function activeDay() {
+function ensureSelectedDate() {
   const d = state.data;
-  if (!d || !d.days) return null;
-  const dates = d.dates || Object.keys(d.days);
-  if (!state.selectedDate || !d.days[state.selectedDate]) {
-    state.selectedDate = dates[dates.length - 1] || null;
+  if (!d || !d.dates || !d.dates.length) return null;
+  if (!state.selectedDate || !d.days || !d.days[state.selectedDate]) {
+    state.selectedDate = d.dates[d.dates.length - 1];
   }
-  return state.selectedDate ? d.days[state.selectedDate] : null;
+  return state.selectedDate;
 }
 
 function latestDay() {
@@ -96,7 +95,7 @@ function updateDateSelect() {
   if (!sel) return;
   const dates = (state.data && state.data.dates) || [];
   if (!dates.length) return;
-  activeDay(); // 确保 selectedDate 有效
+  ensureSelectedDate(); // 确保 selectedDate 有效
   sel.innerHTML = dates
     .map((d, i) => {
       const latest = i === dates.length - 1 ? '（最新）' : '';
@@ -108,6 +107,11 @@ function updateDateSelect() {
 
 function getRangeDates() {
   const dates = (state.data && state.data.dates) || [];
+  if (!dates.length) return [];
+  if (state.range === 'day') {
+    const sel = ensureSelectedDate();
+    return sel ? [sel] : [];
+  }
   if (state.range === 'week') return dates.slice(-7);
   if (state.range === 'custom') {
     const s = state.startDate || dates[0] || '';
@@ -117,36 +121,39 @@ function getRangeDates() {
   return dates; // all
 }
 
-function buildDailyTrend(dates) {
-  const d = state.data;
-  const days = (d && d.days) || {};
-  const latestKey = (d && d.dates && d.dates[d.dates.length - 1]) || '';
-  const ref = days[latestKey];
-  const series = [];
-  if (ref) {
-    for (const g of ref.groups || []) {
-      for (const v of g.videos || []) {
-        const trend = dates.map((date) => {
-          const day = days[date];
-          const g2 = day && (day.groups || []).find((x) => x.name === g.name);
-          const v2 = g2 && (g2.videos || []).find((x) => x.bvid === v.bvid);
-          return { t: date, cum: v2 ? v2.viewTodayDelta : 0 };
-        });
-        series.push({ name: v.title, group: g.name, trend });
-      }
-    }
+function buildSeries(h, granSec) {
+  const pts = h.points || [];
+  const buckets = [];
+  if (!pts.length) return { name: h.title, group: h.group, buckets };
+
+  // 每个时间桶取最后一个节点；跨相邻桶求「该粒度内的新增」
+  const last = new Map();
+  for (const p of pts) {
+    const b = Math.floor(p.t / granSec);
+    const cur = last.get(b);
+    if (!cur || p.t > cur.t) last.set(b, p);
   }
-  return { times: dates, series };
+  const keys = Array.from(last.keys()).sort((a, b) => a - b);
+  let prevView = null;
+  for (const b of keys) {
+    const p = last.get(b);
+    buckets.push({
+      t: b * granSec, // 桶起始时间，作为统一 x 轴刻度
+      d: p.d,
+      delta: prevView === null ? null : p.view - prevView,
+    });
+    prevView = p.view;
+  }
+  return { name: h.title, group: h.group, buckets };
 }
 
 function updateRangeControls() {
   const range = state.range;
   const dateSel = $('dateSelect');
   const custom = $('customRange');
-  const gran = $('granGroup');
+  // 时间范围组与统计粒度组始终并列展示；仅「日」的日期选择、「自定义」的起止日期按需出现
   if (dateSel) dateSel.style.display = range === 'day' ? '' : 'none';
   if (custom) custom.style.display = range === 'custom' ? '' : 'none';
-  if (gran) gran.style.display = range === 'day' ? '' : 'none';
 
   if (range === 'custom' && custom) {
     const dates = (state.data && state.data.dates) || [];
@@ -243,71 +250,40 @@ function initChart() {
   window.addEventListener('resize', () => chart && chart.resize());
 }
 
-// 按统计维度（秒）对 10 分钟粒度趋势做降采样：半小时=1800s、1小时=3600s
-function aggregateTrend(trend, granSec) {
-  const times = (trend && trend.times) || [];
-  const series = (trend && trend.series) || [];
-  if (granSec <= 600 || !times.length) {
-    return { times: times.slice(), series };
-  }
-  const bucketTimes = new Set();
-  const newSeries = series.map((s) => {
-    const lastInBucket = new Map();
-    for (const p of s.trend || []) {
-      lastInBucket.set(Math.floor(p.t / granSec), p);
-    }
-    const trend = Array.from(lastInBucket.values())
-      .sort((a, b) => a.t - b.t);
-    for (const p of trend) bucketTimes.add(p.t);
-    return { name: s.name, group: s.group, trend };
-  });
-  return { times: Array.from(bucketTimes).sort((a, b) => a - b), series: newSeries };
-}
-
 function renderChart() {
   chartEl = chartEl || $('chart');
   initChart();
   if (!chart) return;
 
-  let times;
-  let series;
-  if (state.range === 'day') {
-    const day = activeDay();
-    if (!day) return;
-    const trend = aggregateTrend(day.trend, state.gran);
-    times = (trend.times || []).map((t) => fmtTime(t));
-    series = (trend.series || []).map((s) => {
-      const map = new Map((s.trend || []).map((p) => [p.t, p.cum]));
-      const color = s.group === '王橹杰' ? '#2dd4bf' : '#f472b6';
-      return {
-        name: truncate(s.name, 20),
-        type: 'line',
-        symbol: 'circle',
-        symbolSize: 3,
-        lineStyle: { width: 2, color },
-        itemStyle: { color },
-        emphasis: { focus: 'series' },
-        data: (trend.times || []).map((t) => (map.has(t) ? map.get(t) : null)),
-      };
-    });
-  } else {
-    const daily = buildDailyTrend(getRangeDates());
-    times = (daily.times || []).map((d) => formatDateLabel(d));
-    series = (daily.series || []).map((s) => {
-      const map = new Map((s.trend || []).map((p) => [p.t, p.cum]));
-      const color = s.group === '王橹杰' ? '#2dd4bf' : '#f472b6';
-      return {
-        name: truncate(s.name, 20),
-        type: 'line',
-        symbol: 'circle',
-        symbolSize: 4,
-        lineStyle: { width: 2, color },
-        itemStyle: { color },
-        emphasis: { focus: 'series' },
-        data: (daily.times || []).map((d) => (map.has(d) ? map.get(d) : null)),
-      };
-    });
-  }
+  const dates = getRangeDates();
+  const dateSet = new Set(dates);
+  const gran = state.gran || 600;
+  const history = (state.data && state.data.history) || [];
+
+  // 每个视频一条「该粒度内新增」曲线，统一按时间桶对齐（任意时间范围 × 任意粒度正交组合）
+  const rawSeries = history.map((h) => {
+    const s = buildSeries(h, gran);
+    return { name: h.title, group: h.group, buckets: s.buckets.filter((b) => dateSet.has(b.d)) };
+  });
+
+  const timeSet = new Set();
+  for (const s of rawSeries) for (const b of s.buckets) timeSet.add(b.t);
+  const times = Array.from(timeSet).sort((a, b) => a - b);
+
+  const series = rawSeries.map((s) => {
+    const map = new Map(s.buckets.map((b) => [b.t, b.delta]));
+    const color = s.group === '王橹杰' ? '#2dd4bf' : '#f472b6';
+    return {
+      name: truncate(s.name, 20),
+      type: 'line',
+      symbol: 'circle',
+      symbolSize: 3,
+      lineStyle: { width: 2, color },
+      itemStyle: { color },
+      emphasis: { focus: 'series' },
+      data: times.map((t) => (map.has(t) ? map.get(t) : null)),
+    };
+  });
 
   const option = {
     backgroundColor: 'transparent',
@@ -318,7 +294,7 @@ function renderChart() {
     grid: { left: 0, right: 12, top: 24, bottom: 36, containLabel: true },
     xAxis: {
       type: 'category',
-      data: times,
+      data: times.map((t) => fmtTime(t)),
       axisLine: { lineStyle: { color: 'rgba(90,58,75,.15)' } },
       axisLabel: { color: '#b3859a' },
     },
