@@ -1,6 +1,6 @@
 'use strict';
 
-const state = { data: null };
+const state = { data: null, selectedDate: null, gran: 600 };
 let chart = null;
 let chartEl = null;
 
@@ -68,6 +68,36 @@ function updateStatus() {
     `上次采集：${fmtTime(d.lastCollect)} · 每 10 分钟自动采集`;
 }
 
+function activeDay() {
+  const d = state.data;
+  if (!d || !d.days) return null;
+  const dates = d.dates || Object.keys(d.days);
+  if (!state.selectedDate || !d.days[state.selectedDate]) {
+    state.selectedDate = dates[dates.length - 1] || null;
+  }
+  return state.selectedDate ? d.days[state.selectedDate] : null;
+}
+
+function formatDateLabel(d) {
+  const parts = String(d).split('-');
+  return parts.length >= 3 ? `${parts[1]}-${parts[2]}` : d;
+}
+
+function updateDateSelect() {
+  const sel = $('dateSelect');
+  if (!sel) return;
+  const dates = (state.data && state.data.dates) || [];
+  if (!dates.length) return;
+  activeDay(); // 确保 selectedDate 有效
+  sel.innerHTML = dates
+    .map((d, i) => {
+      const latest = i === dates.length - 1 ? '（最新）' : '';
+      const selected = d === state.selectedDate ? ' selected' : '';
+      return `<option value="${d}"${selected}>${formatDateLabel(d)}${latest}</option>`;
+    })
+    .join('');
+}
+
 /* ------------------------------ 左右两列 ------------------------------ */
 
 function renderCol(group) {
@@ -132,10 +162,11 @@ function renderCol(group) {
 }
 
 function renderCols() {
-  const d = state.data;
+  const day = activeDay();
   const wrap = $('pkCols');
   wrap.innerHTML = '';
-  for (const g of d.groups || []) wrap.appendChild(renderCol(g));
+  if (!day) return;
+  for (const g of day.groups || []) wrap.appendChild(renderCol(g));
 }
 
 /* ------------------------------ 趋势图 ------------------------------ */
@@ -151,14 +182,35 @@ function initChart() {
   window.addEventListener('resize', () => chart && chart.resize());
 }
 
+// 按统计维度（秒）对 10 分钟粒度趋势做降采样：半小时=1800s、1小时=3600s
+function aggregateTrend(trend, granSec) {
+  const times = (trend && trend.times) || [];
+  const series = (trend && trend.series) || [];
+  if (granSec <= 600 || !times.length) {
+    return { times: times.slice(), series };
+  }
+  const bucketTimes = new Set();
+  const newSeries = series.map((s) => {
+    const lastInBucket = new Map();
+    for (const p of s.trend || []) {
+      lastInBucket.set(Math.floor(p.t / granSec), p);
+    }
+    const trend = Array.from(lastInBucket.values())
+      .sort((a, b) => a.t - b.t);
+    for (const p of trend) bucketTimes.add(p.t);
+    return { name: s.name, group: s.group, trend };
+  });
+  return { times: Array.from(bucketTimes).sort((a, b) => a - b), series: newSeries };
+}
+
 function renderChart() {
-  const d = state.data;
-  if (!d) return;
+  const day = activeDay();
+  if (!day) return;
   chartEl = chartEl || $('chart');
   initChart();
   if (!chart) return;
 
-  const trend = d.trend || {};
+  const trend = aggregateTrend(day.trend, state.gran);
   const times = (trend.times || []).map((t) => fmtTime(t));
   const series = (trend.series || []).map((s) => {
     const map = new Map((s.trend || []).map((p) => [p.t, p.cum]));
@@ -220,12 +272,29 @@ function axisTooltip(params) {
 
 function render() {
   updateStatus();
+  updateDateSelect();
   renderCols();
   renderChart();
 }
 
 const refreshBtn = document.getElementById('btnRefresh');
 if (refreshBtn) refreshBtn.onclick = fetchData;
+
+const dateSelect = $('dateSelect');
+if (dateSelect) dateSelect.onchange = () => {
+  state.selectedDate = dateSelect.value;
+  render();
+};
+
+const granGroup = $('granGroup');
+if (granGroup) granGroup.onclick = (e) => {
+  const btn = e.target.closest('[data-gran]');
+  if (!btn) return;
+  state.gran = Number(btn.dataset.gran);
+  granGroup.querySelectorAll('.toggle-btn').forEach((b) => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderChart();
+};
 
 fetchData();
 setInterval(fetchData, 60000); // 数据 10 分钟采集一次，60 秒轮询即可
