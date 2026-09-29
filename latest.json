@@ -7,73 +7,73 @@
       "groups": [
         {
           "name": "杨博文",
-          "totalTodayDelta": 10979,
+          "totalTodayDelta": 11275,
           "topToday": {
             "bvid": "BV1mX8z6NEzz",
             "title": "【4K精剪】管他什么音乐 | 杨博文直拍 | 260816",
             "owner": "underthepoplar",
-            "delta": 3749
+            "delta": 3856
           },
           "videos": [
             {
               "bvid": "BV15egs6pEJp",
               "title": "杨博文｜Whiplash 2机位精剪 直拍 fancam｜4K60｜260813",
               "owner": "LOST_杨博文",
-              "viewCur": 700272,
-              "viewDelta": 105,
-              "viewTodayDelta": 3578
+              "viewCur": 700358,
+              "viewDelta": 86,
+              "viewTodayDelta": 3664
             },
             {
               "bvid": "BV1c3gF6wERf",
               "title": "【杨博文】元气甜度爆表！摇曳4k横屏直拍",
               "owner": "游园会_杨博文",
-              "viewCur": 653729,
-              "viewDelta": 96,
-              "viewTodayDelta": 3652
+              "viewCur": 653832,
+              "viewDelta": 103,
+              "viewTodayDelta": 3755
             },
             {
               "bvid": "BV1mX8z6NEzz",
               "title": "【4K精剪】管他什么音乐 | 杨博文直拍 | 260816",
               "owner": "underthepoplar",
-              "viewCur": 598498,
-              "viewDelta": 99,
-              "viewTodayDelta": 3749
+              "viewCur": 598605,
+              "viewDelta": 107,
+              "viewTodayDelta": 3856
             }
           ]
         },
         {
           "name": "王橹杰",
-          "totalTodayDelta": 26214,
+          "totalTodayDelta": 26982,
           "topToday": {
             "bvid": "BV1tmbY6nEQe",
             "title": "【8K直拍｜王橹杰FOCUS】虚拟",
             "owner": "Morpheus秩序外_王橹杰",
-            "delta": 13719
+            "delta": 14125
           },
           "videos": [
             {
               "bvid": "BV1tmbY6nEQe",
               "title": "【8K直拍｜王橹杰FOCUS】虚拟",
               "owner": "Morpheus秩序外_王橹杰",
-              "viewCur": 956697,
-              "viewDelta": 364,
-              "viewTodayDelta": 13719
+              "viewCur": 957103,
+              "viewDelta": 406,
+              "viewTodayDelta": 14125
             },
             {
               "bvid": "BV1ehgs6sEbV",
               "title": "【王橹杰FOCUS｜4K直拍】100 Ways",
               "owner": "Morpheus秩序外_王橹杰",
-              "viewCur": 411412,
-              "viewDelta": 15,
-              "viewTodayDelta": 345
+              "viewCur": 411418,
+              "viewDelta": 6,
+              "viewTodayDelta": 351
             },
             {
               "bvid": "BV1FNb16BEYZ",
               "title": "王橹杰|《黑苹果》4k三机位直拍",
               "owner": "Somniel_王橹杰",
-              "viewCur": 298446,
-              "viewDelta": 362,
-              "viewTodayDelta": 12150
+              "viewCur": 298802,
+              "viewDelta": 356,
+              "viewTodayDelta": 12506
             }
           ]
         }
@@ -113,7 +113,8 @@
           1790676000,
           1790676600,
           1790677200,
-          1790677800
+          1790677800,
+          1790678400
         ],
         "series": [
           {
@@ -255,6 +256,10 @@
               {
                 "t": 1790677800,
                 "cum": 3578
+              },
+              {
+                "t": 1790678400,
+                "cum": 3664
               }
             ]
           },
@@ -397,6 +402,10 @@
               {
                 "t": 1790677800,
                 "cum": 3652
+              },
+              {
+                "t": 1790678400,
+                "cum": 3755
               }
             ]
           },
@@ -539,6 +548,10 @@
               {
                 "t": 1790677800,
                 "cum": 3749
+              },
+              {
+                "t": 1790678400,
+                "cum": 3856
               }
             ]
           },
@@ -681,6 +694,10 @@
               {
                 "t": 1790677800,
                 "cum": 13719
+              },
+              {
+                "t": 1790678400,
+                "cum": 14125
               }
             ]
           },
@@ -823,6 +840,10 @@
               {
                 "t": 1790677800,
                 "cum": 345
+              },
+              {
+                "t": 1790678400,
+                "cum": 351
               }
             ]
           },
@@ -965,6 +986,10 @@
               {
                 "t": 1790677800,
                 "cum": 12150
+              },
+              {
+                "t": 1790678400,
+                "cum": 12506
               }
             ]
           }
@@ -1147,6 +1172,11 @@
           "t": 1790677800,
           "d": "2026-09-29",
           "view": 700272
+        },
+        {
+          "t": 1790678400,
+          "d": "2026-09-29",
+          "view": 700358
         }
       ]
     },
@@ -1324,6 +1354,11 @@
           "t": 1790677800,
           "d": "2026-09-29",
           "view": 653729
+        },
+        {
+          "t": 1790678400,
+          "d": "2026-09-29",
+          "view": 653832
         }
       ]
     },
@@ -1501,6 +1536,11 @@
           "t": 1790677800,
           "d": "2026-09-29",
           "view": 598498
+        },
+        {
+          "t": 1790678400,
+          "d": "2026-09-29",
+          "view": 598605
         }
       ]
     },
@@ -1678,6 +1718,11 @@
           "t": 1790677800,
           "d": "2026-09-29",
           "view": 956697
+        },
+        {
+          "t": 1790678400,
+          "d": "2026-09-29",
+          "view": 957103
         }
       ]
     },
@@ -1855,6 +1900,11 @@
           "t": 1790677800,
           "d": "2026-09-29",
           "view": 411412
+        },
+        {
+          "t": 1790678400,
+          "d": "2026-09-29",
+          "view": 411418
         }
       ]
     },
@@ -2032,10 +2082,15 @@
           "t": 1790677800,
           "d": "2026-09-29",
           "view": 298446
+        },
+        {
+          "t": 1790678400,
+          "d": "2026-09-29",
+          "view": 298802
         }
       ]
     }
   ],
-  "lastCollect": 1790677800,
+  "lastCollect": 1790678400,
   "collecting": false
 }
