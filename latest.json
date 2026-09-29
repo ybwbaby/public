@@ -2,80 +2,81 @@
   "groups": [
     {
       "name": "杨博文",
-      "totalTodayDelta": 0,
+      "totalTodayDelta": 674,
       "topToday": {
-        "bvid": "BV15egs6pEJp",
-        "title": "杨博文｜Whiplash 2机位精剪 直拍 fancam｜4K60｜260813",
-        "owner": "LOST_杨博文",
-        "delta": 0
+        "bvid": "BV1c3gF6wERf",
+        "title": "【杨博文】元气甜度爆表！摇曳4k横屏直拍",
+        "owner": "游园会_杨博文",
+        "delta": 237
       },
       "videos": [
         {
           "bvid": "BV15egs6pEJp",
           "title": "杨博文｜Whiplash 2机位精剪 直拍 fancam｜4K60｜260813",
           "owner": "LOST_杨博文",
-          "viewCur": 696694,
-          "viewDelta": 0,
-          "viewTodayDelta": 0
+          "viewCur": 696920,
+          "viewDelta": 226,
+          "viewTodayDelta": 226
         },
         {
           "bvid": "BV1c3gF6wERf",
           "title": "【杨博文】元气甜度爆表！摇曳4k横屏直拍",
           "owner": "游园会_杨博文",
-          "viewCur": 650077,
-          "viewDelta": 0,
-          "viewTodayDelta": 0
+          "viewCur": 650314,
+          "viewDelta": 237,
+          "viewTodayDelta": 237
         },
         {
           "bvid": "BV1mX8z6NEzz",
           "title": "【4K精剪】管他什么音乐 | 杨博文直拍 | 260816",
           "owner": "underthepoplar",
-          "viewCur": 594749,
-          "viewDelta": 0,
-          "viewTodayDelta": 0
+          "viewCur": 594960,
+          "viewDelta": 211,
+          "viewTodayDelta": 211
         }
       ]
     },
     {
       "name": "王橹杰",
-      "totalTodayDelta": 0,
+      "totalTodayDelta": 1423,
       "topToday": {
         "bvid": "BV1tmbY6nEQe",
         "title": "【8K直拍｜王橹杰FOCUS】虚拟",
         "owner": "Morpheus秩序外_王橹杰",
-        "delta": 0
+        "delta": 766
       },
       "videos": [
         {
           "bvid": "BV1tmbY6nEQe",
           "title": "【8K直拍｜王橹杰FOCUS】虚拟",
           "owner": "Morpheus秩序外_王橹杰",
-          "viewCur": 942978,
-          "viewDelta": 0,
-          "viewTodayDelta": 0
+          "viewCur": 943744,
+          "viewDelta": 766,
+          "viewTodayDelta": 766
         },
         {
           "bvid": "BV1ehgs6sEbV",
           "title": "【王橹杰FOCUS｜4K直拍】100 Ways",
           "owner": "Morpheus秩序外_王橹杰",
-          "viewCur": 411067,
-          "viewDelta": 0,
-          "viewTodayDelta": 0
+          "viewCur": 411084,
+          "viewDelta": 17,
+          "viewTodayDelta": 17
         },
         {
           "bvid": "BV1FNb16BEYZ",
           "title": "王橹杰|《黑苹果》4k三机位直拍",
           "owner": "Somniel_王橹杰",
-          "viewCur": 286296,
-          "viewDelta": 0,
-          "viewTodayDelta": 0
+          "viewCur": 286936,
+          "viewDelta": 640,
+          "viewTodayDelta": 640
         }
       ]
     }
   ],
   "trend": {
     "times": [
-      1790657437
+      1790657437,
+      1790658600
     ],
     "series": [
       {
@@ -85,6 +86,10 @@
           {
             "t": 1790657437,
             "cum": 0
+          },
+          {
+            "t": 1790658600,
+            "cum": 226
           }
         ]
       },
@@ -95,6 +100,10 @@
           {
             "t": 1790657437,
             "cum": 0
+          },
+          {
+            "t": 1790658600,
+            "cum": 237
           }
         ]
       },
@@ -105,6 +114,10 @@
           {
             "t": 1790657437,
             "cum": 0
+          },
+          {
+            "t": 1790658600,
+            "cum": 211
           }
         ]
       },
@@ -115,6 +128,10 @@
           {
             "t": 1790657437,
             "cum": 0
+          },
+          {
+            "t": 1790658600,
+            "cum": 766
           }
         ]
       },
@@ -125,6 +142,10 @@
           {
             "t": 1790657437,
             "cum": 0
+          },
+          {
+            "t": 1790658600,
+            "cum": 17
           }
         ]
       },
@@ -135,11 +156,15 @@
           {
             "t": 1790657437,
             "cum": 0
+          },
+          {
+            "t": 1790658600,
+            "cum": 640
           }
         ]
       }
     ]
   },
-  "lastCollect": 1790657437,
+  "lastCollect": 1790658600,
   "collecting": false
 }
