@@ -16,7 +16,6 @@
       </div>
     </div>
     <div class="actions">
-      <select id="dateSelect" class="select" title="筛选日期"></select>
       <button id="btnRefresh" class="btn primary">刷新</button>
     </div>
   </div>
@@ -29,10 +28,13 @@
     <section class="panel">
       <div class="panel-head">
         <h2>当日涨幅趋势（两家对比）</h2>
-        <div class="toggle-group" id="granGroup" title="统计维度">
-          <button class="toggle-btn active" data-gran="600">10分钟</button>
-          <button class="toggle-btn" data-gran="1800">半小时</button>
-          <button class="toggle-btn" data-gran="3600">1小时</button>
+        <div class="panel-controls">
+          <select id="dateSelect" class="select" title="筛选日期"></select>
+          <div class="toggle-group" id="granGroup" title="统计维度">
+            <button class="toggle-btn active" data-gran="600">10分钟</button>
+            <button class="toggle-btn" data-gran="1800">半小时</button>
+            <button class="toggle-btn" data-gran="3600">1小时</button>
+          </div>
         </div>
       </div>
       <div id="chart" class="chart"></div>
