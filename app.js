@@ -78,6 +78,14 @@ function activeDay() {
   return state.selectedDate ? d.days[state.selectedDate] : null;
 }
 
+function latestDay() {
+  const d = state.data;
+  if (!d || !d.days) return null;
+  const dates = d.dates || Object.keys(d.days);
+  const key = dates[dates.length - 1];
+  return key ? d.days[key] : null;
+}
+
 function formatDateLabel(d) {
   const parts = String(d).split('-');
   return parts.length >= 3 ? `${parts[1]}-${parts[2]}` : d;
@@ -162,7 +170,7 @@ function renderCol(group) {
 }
 
 function renderCols() {
-  const day = activeDay();
+  const day = latestDay();
   const wrap = $('pkCols');
   wrap.innerHTML = '';
   if (!day) return;
@@ -283,7 +291,7 @@ if (refreshBtn) refreshBtn.onclick = fetchData;
 const dateSelect = $('dateSelect');
 if (dateSelect) dateSelect.onchange = () => {
   state.selectedDate = dateSelect.value;
-  render();
+  renderChart();
 };
 
 const granGroup = $('granGroup');
