@@ -75,7 +75,6 @@ function renderCol(group) {
   col.className = 'pk-col';
 
   const top = group.topToday;
-  const titleLen = isMobile() ? 12 : 16;
   const topHtml = top
     ? `
       <div class="top-title" title="${escapeHtml(top.title)}">${escapeHtml(truncate(top.title, isMobile() ? 10 : 18))}</div>
@@ -87,7 +86,7 @@ function renderCol(group) {
     .map((v) => `
       <tr>
         <td class="title-cell">
-          <div class="vid-title" title="${escapeHtml(v.title)}">${escapeHtml(truncate(v.title, titleLen))}</div>
+          <div class="vid-title" title="${escapeHtml(v.title)}">${escapeHtml(v.title)}</div>
           <div class="bv">${escapeHtml(v.bvid)}</div>
         </td>
         <td class="num">${fmt(v.viewCur)}</td>
