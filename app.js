@@ -1,6 +1,6 @@
 'use strict';
 
-const state = { data: null, selectedDate: null, gran: 600, range: 'day', startDate: null, endDate: null };
+const state = { data: null, selectedDate: null, gran: 600 };
 let chart = null;
 let chartEl = null;
 
@@ -105,22 +105,6 @@ function updateDateSelect() {
     .join('');
 }
 
-function getRangeDates() {
-  const dates = (state.data && state.data.dates) || [];
-  if (!dates.length) return [];
-  if (state.range === 'day') {
-    const sel = ensureSelectedDate();
-    return sel ? [sel] : [];
-  }
-  if (state.range === 'week') return dates.slice(-7);
-  if (state.range === 'custom') {
-    const s = state.startDate || dates[0] || '';
-    const e = state.endDate || dates[dates.length - 1] || '';
-    return dates.filter((d) => d >= s && d <= e);
-  }
-  return dates; // all
-}
-
 function buildSeries(h, granSec) {
   const pts = h.points || [];
   const buckets = [];
@@ -147,25 +131,6 @@ function buildSeries(h, granSec) {
   return { name: h.title, group: h.group, buckets };
 }
 
-function updateRangeControls() {
-  const range = state.range;
-  const dateSel = $('dateSelect');
-  const custom = $('customRange');
-  // 时间范围组与统计粒度组始终并列展示；仅「日」的日期选择、「自定义」的起止日期按需出现
-  if (dateSel) dateSel.style.display = range === 'day' ? '' : 'none';
-  if (custom) custom.style.display = range === 'custom' ? '' : 'none';
-
-  if (range === 'custom' && custom) {
-    const dates = (state.data && state.data.dates) || [];
-    if (!state.startDate) state.startDate = dates[0] || '';
-    if (!state.endDate) state.endDate = dates[dates.length - 1] || '';
-    const s = $('startDate');
-    const e = $('endDate');
-    if (s) { s.value = state.startDate; if (dates.length) { s.min = dates[0]; s.max = dates[dates.length - 1]; } }
-    if (e) { e.value = state.endDate; if (dates.length) { e.min = dates[0]; e.max = dates[dates.length - 1]; } }
-  }
-}
-
 /* ------------------------------ 左右两列 ------------------------------ */
 
 function renderCol(group) {
@@ -184,7 +149,7 @@ function renderCol(group) {
     .map((v) => `
       <tr>
         <td class="title-cell">
-          <div class="vid-title" title="${escapeHtml(v.title)}">${escapeHtml(v.title)}</div>
+          <div class="vid-title" title="${escapeHtml(v.title)}">${escapeHtml(truncate(v.title, 14))}</div>
           <div class="bv">${escapeHtml(v.bvid)}</div>
         </td>
         <td class="num">${fmt(v.viewCur)}</td>
@@ -255,8 +220,8 @@ function renderChart() {
   initChart();
   if (!chart) return;
 
-  const dates = getRangeDates();
-  const dateSet = new Set(dates);
+  const sel = ensureSelectedDate();
+  const dateSet = new Set(sel ? [sel] : []);
   const gran = state.gran || 600;
   const history = (state.data && state.data.history) || [];
 
@@ -331,7 +296,6 @@ function axisTooltip(params) {
 function render() {
   updateStatus();
   updateDateSelect();
-  updateRangeControls();
   renderCols();
   renderChart();
 }
@@ -342,28 +306,6 @@ if (refreshBtn) refreshBtn.onclick = fetchData;
 const dateSelect = $('dateSelect');
 if (dateSelect) dateSelect.onchange = () => {
   state.selectedDate = dateSelect.value;
-  renderChart();
-};
-
-const rangeGroup = $('rangeGroup');
-if (rangeGroup) rangeGroup.onclick = (e) => {
-  const btn = e.target.closest('[data-range]');
-  if (!btn) return;
-  state.range = btn.dataset.range;
-  rangeGroup.querySelectorAll('.toggle-btn').forEach((b) => b.classList.remove('active'));
-  btn.classList.add('active');
-  updateRangeControls();
-  renderChart();
-};
-
-const startDate = $('startDate');
-if (startDate) startDate.onchange = () => {
-  state.startDate = startDate.value;
-  renderChart();
-};
-const endDate = $('endDate');
-if (endDate) endDate.onchange = () => {
-  state.endDate = endDate.value;
   renderChart();
 };
 
