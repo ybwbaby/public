@@ -140,7 +140,7 @@ function renderCol(group) {
   const top = group.topToday;
   const topHtml = top
     ? `
-      <div class="top-title" title="${escapeHtml(top.title)}">${escapeHtml(truncate(top.title, 16))}</div>
+      <div class="top-title" title="${escapeHtml(top.title)}">${escapeHtml(truncate(top.title, 20))}</div>
       <div class="top-owner">${top.owner ? 'UP主：' + escapeHtml(top.owner) : ''}</div>
       <div class="delta ${deltaClass(top.delta)}">播放 ${fmtDelta(top.delta)}</div>`
     : `<div class="muted">暂无数据</div>`;
