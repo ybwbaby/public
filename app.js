@@ -161,7 +161,7 @@ function renderCol(group) {
   col.innerHTML = `
     <div class="col-head">
       <div class="col-name">${escapeHtml(group.name)}</div>
-      <div class="col-badge">PK</div>
+      <div class="col-badge">${group.name === '王橹杰' ? '🦌' : '🐰'}</div>
     </div>
 
     <div class="metric-block">
