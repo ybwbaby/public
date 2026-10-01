@@ -241,9 +241,10 @@ function renderChart() {
     return {
       name: truncate(s.name, 20),
       type: 'line',
+      smooth: 0.4,
       symbol: 'circle',
       symbolSize: 3,
-      lineStyle: { width: 2, color },
+      lineStyle: { width: 1.5, color },
       itemStyle: { color },
       emphasis: { focus: 'series' },
       data: times.map((t) => (map.has(t) ? map.get(t) : null)),
