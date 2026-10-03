@@ -222,18 +222,26 @@ function renderCols() {
   const tagMap = {};
   for (const h of (state.data && state.data.history) || []) tagMap[h.bvid] = h.tag || '';
 
-  const cols = [];
+  const solo = [];
+  const pk = [];
   for (const g of day.groups || []) {
     if (g.name === '王橹杰') {
-      const pk = (g.videos || []).filter((v) => (tagMap[v.bvid] || '') !== '单刷');
-      const solo = (g.videos || []).filter((v) => (tagMap[v.bvid] || '') === '单刷');
-      if (pk.length) cols.push(buildCol('王橹杰', pk, 'pk'));
-      if (solo.length) cols.push(buildCol('王橹杰', solo, '单刷'));
+      const pkVids = (g.videos || []).filter((v) => (tagMap[v.bvid] || '') !== '单刷');
+      const soloVids = (g.videos || []).filter((v) => (tagMap[v.bvid] || '') === '单刷');
+      if (soloVids.length) solo.push(buildCol('王橹杰', soloVids, '单刷'));
+      if (pkVids.length) pk.push(buildCol('王橹杰', pkVids, 'pk'));
     } else if (g.name === '杨博文单刷') {
-      cols.push(buildCol('杨博文', g.videos, '单刷'));
+      solo.push(buildCol('杨博文', g.videos, '单刷'));
     } else {
-      cols.push(g);
+      pk.push(g);
     }
+  }
+  // 单刷放左列：按人物交错，同人物「单刷」在前、「PK」在后
+  const cols = [];
+  const n = Math.max(solo.length, pk.length);
+  for (let i = 0; i < n; i++) {
+    if (solo[i]) cols.push(solo[i]);
+    if (pk[i]) cols.push(pk[i]);
   }
   for (const c of cols) wrap.appendChild(renderCol(c));
 }
