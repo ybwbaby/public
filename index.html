@@ -24,6 +24,22 @@
     <!-- 左右两列 PK -->
     <section class="pk-cols" id="pkCols"></section>
 
+    <!-- 底部趋势图（不分列） -->
+    <section class="panel">
+      <div class="panel-head">
+        <h2>涨幅趋势</h2>
+        <div class="panel-controls">
+          <select id="dateSelect" class="select" title="筛选日期"></select>
+          <div class="toggle-group" id="granGroup" title="统计维度">
+            <button class="toggle-btn active" data-gran="600">10分钟</button>
+            <button class="toggle-btn" data-gran="1800">半小时</button>
+            <button class="toggle-btn" data-gran="3600">1小时</button>
+          </div>
+        </div>
+      </div>
+      <div id="chart" class="chart"></div>
+    </section>
+
     <!-- Excel 明细对比（每半小时） -->
     <section class="panel" id="comparePanel">
       <div class="panel-head">
@@ -42,22 +58,6 @@
         </div>
       </div>
       <div id="compareTable" class="compare-table"></div>
-    </section>
-
-    <!-- 底部趋势图（不分列） -->
-    <section class="panel">
-      <div class="panel-head">
-        <h2>涨幅趋势</h2>
-        <div class="panel-controls">
-          <select id="dateSelect" class="select" title="筛选日期"></select>
-          <div class="toggle-group" id="granGroup" title="统计维度">
-            <button class="toggle-btn active" data-gran="600">10分钟</button>
-            <button class="toggle-btn" data-gran="1800">半小时</button>
-            <button class="toggle-btn" data-gran="3600">1小时</button>
-          </div>
-        </div>
-      </div>
-      <div id="chart" class="chart"></div>
     </section>
   </main>
 
