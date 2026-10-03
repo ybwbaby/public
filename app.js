@@ -450,7 +450,7 @@ function renderCompareTable() {
       bodyRows.push(
         `<tr><td class="vid-label" style="border-left:3px solid ${c}" title="${escapeHtml(v.h.title)}">` +
         `<span class="vid-bv">${escapeHtml(v.h.bvid)}</span>` +
-        `<div class="vid-name-row"><span class="vid-dot" style="background:${c}"></span><span class="badge">${escapeHtml(g.badge)}</span><span class="vid-name">${escapeHtml(truncate(v.h.title, 12))}</span></div>` +
+        `<div class="vid-name-row"><span class="vid-dot" style="background:${c}"></span><span class="badge" style="background:${bg};color:${c};box-shadow:none">${escapeHtml(g.badge)}</span><span class="vid-name">${escapeHtml(truncate(v.h.title, 12))}</span></div>` +
         `</td>${cells}</tr>`
       );
     }
