@@ -91,18 +91,20 @@ function formatDateLabel(d) {
 }
 
 function updateDateSelect() {
-  const sel = $('dateSelect');
-  if (!sel) return;
   const dates = (state.data && state.data.dates) || [];
   if (!dates.length) return;
   ensureSelectedDate(); // 确保 selectedDate 有效
-  sel.innerHTML = dates
+  const opts = dates
     .map((d, i) => {
       const latest = i === dates.length - 1 ? '（最新）' : '';
       const selected = d === state.selectedDate ? ' selected' : '';
       return `<option value="${d}"${selected}>${formatDateLabel(d)}${latest}</option>`;
     })
     .join('');
+  const sel = $('dateSelect');
+  if (sel) sel.innerHTML = opts;
+  const sel2 = $('compareDateSelect');
+  if (sel2) sel2.innerHTML = opts;
 }
 
 function buildSeries(h, granSec) {
@@ -442,12 +444,20 @@ function render() {
 const refreshBtn = document.getElementById('btnRefresh');
 if (refreshBtn) refreshBtn.onclick = fetchData;
 
-const dateSelect = $('dateSelect');
-if (dateSelect) dateSelect.onchange = () => {
-  state.selectedDate = dateSelect.value;
+function onDateChange(val) {
+  state.selectedDate = val;
+  const sel = $('dateSelect');
+  if (sel) sel.value = val;
+  const sel2 = $('compareDateSelect');
+  if (sel2) sel2.value = val;
   renderChart();
   renderCompareTable();
-};
+}
+
+const dateSelect = $('dateSelect');
+if (dateSelect) dateSelect.onchange = () => onDateChange(dateSelect.value);
+const compareDateSelect = $('compareDateSelect');
+if (compareDateSelect) compareDateSelect.onchange = () => onDateChange(compareDateSelect.value);
 
 const granGroup = $('granGroup');
 if (granGroup) granGroup.onclick = (e) => {
