@@ -164,7 +164,7 @@ function renderCol(group) {
   col.innerHTML = `
     <div class="col-head">
       <div class="col-name">${escapeHtml(group.name)}</div>
-      <div class="col-badge"${badgeColor ? ` style="background:rgba(45,212,191,.12);color:${badgeColor}"` : ''}>${colBadge(group.name)}</div>
+      <div class="col-badge"${badgeColor ? ` style="background:rgba(45,212,191,.12);color:${badgeColor}"` : ''}>${colBadge(group)}</div>
     </div>
 
     <div class="metric-block">
@@ -197,20 +197,20 @@ function renderCol(group) {
   return col;
 }
 
-function colBadge(name) {
-  if (name === '杨博文') return 'PK';
-  if (name === '王橹杰') return 'pk';
-  return '单刷';
+function colBadge(group) {
+  if (group.badge) return group.badge;
+  if (group.name === '杨博文') return 'PK';
+  return 'pk';
 }
 
-function buildCol(name, videos) {
+function buildCol(name, videos, badge) {
   const totalTodayDelta = videos.reduce((s, v) => s + (Number(v.viewTodayDelta) || 0), 0);
   let top = null;
   for (const v of videos) {
     const d = Number(v.viewTodayDelta) || 0;
     if (!top || d > top.delta) top = { title: v.title, owner: v.owner || '', delta: d };
   }
-  return { name, totalTodayDelta, topToday: top, videos };
+  return { name, badge, totalTodayDelta, topToday: top, videos };
 }
 
 function renderCols() {
@@ -227,8 +227,8 @@ function renderCols() {
     if (g.name === '王橹杰') {
       const pk = (g.videos || []).filter((v) => (tagMap[v.bvid] || '') !== '单刷');
       const solo = (g.videos || []).filter((v) => (tagMap[v.bvid] || '') === '单刷');
-      if (pk.length) cols.push(buildCol('王橹杰', pk));
-      if (solo.length) cols.push(buildCol('王橹杰新', solo));
+      if (pk.length) cols.push(buildCol('王橹杰', pk, 'pk'));
+      if (solo.length) cols.push(buildCol('王橹杰', solo, '单刷'));
     } else {
       cols.push(g);
     }
@@ -331,7 +331,7 @@ function axisTooltip(params) {
 const COMPARE_GROUPS = [
   { label: '杨博文', badge: 'PK', color: '#f472b6', match: (h) => h.group === '杨博文' },
   { label: '王橹杰', badge: 'pk', color: '#2dd4bf', match: (h) => h.group === '王橹杰' && (h.tag || '') !== '单刷' },
-  { label: '王橹杰新', badge: '单刷', color: '#2dd4bf', match: (h) => h.group === '王橹杰' && (h.tag || '') === '单刷' },
+  { label: '王橹杰', badge: '单刷', color: '#2dd4bf', match: (h) => h.group === '王橹杰' && (h.tag || '') === '单刷' },
 ];
 
 function hexRgba(hex, a) {
