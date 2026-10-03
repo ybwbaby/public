@@ -134,6 +134,20 @@ td.num{font-variant-numeric:tabular-nums}
 .range-sep{color:var(--muted);font-size:13px}
 .chart{width:100%;height:420px}
 
+/* Excel 明细对比表格 */
+#comparePanel{margin-top:24px}
+.compare-wrap{max-height:60vh}
+.compare-table .group-head{
+  text-align:center;font-weight:700;color:var(--text-light);font-size:13px;
+  background:rgba(236,72,153,.08);
+  border-left:1px solid rgba(236,72,153,.14);
+}
+.compare-table .group-head .badge{font-weight:600}
+.compare-table thead tr:nth-child(2) th{text-align:center}
+.compare-table .time-col,.compare-table .time-cell{text-align:left}
+.compare-table .time-cell{color:var(--muted);font-weight:600}
+.compare-table th.total-col{background:rgba(236,72,153,.14);color:var(--text-light);font-weight:700}
+
 .up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--muted)}
 .delta{font-weight:600}
 

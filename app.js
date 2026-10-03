@@ -292,6 +292,122 @@ function axisTooltip(params) {
   return html;
 }
 
+/* ------------------------------ Excel 明细对比 ------------------------------ */
+
+const COMPARE_GROUPS = [
+  { label: '杨博文', badge: 'PK', match: (h) => h.group === '杨博文' },
+  { label: '王橹杰', badge: 'pk', match: (h) => h.group === '王橹杰' && (h.tag || '') !== '单刷' },
+  { label: '王橹杰新', badge: '单刷', match: (h) => h.group === '王橹杰' && (h.tag || '') === '单刷' },
+];
+
+function fmtHour(t) {
+  const d = new Date(t * 1000);
+  const p = (x) => String(x).padStart(2, '0');
+  return `${p(d.getHours())}:${p(d.getMinutes())}`;
+}
+
+function videoBase(pts, dateKey) {
+  let prev = null;
+  for (const p of pts) {
+    if (p.d < dateKey) {
+      if (!prev || p.t > prev.t) prev = p;
+    }
+  }
+  if (prev) return prev.view;
+  for (const p of pts) {
+    if (p.d === dateKey) return p.view;
+  }
+  return 0;
+}
+
+function buildViewMap(pts, dateKey, granSec) {
+  const map = new Map();
+  for (const p of pts) {
+    if (p.d !== dateKey) continue;
+    const b = Math.floor(p.t / granSec) * granSec;
+    const cur = map.get(b);
+    if (cur === undefined || p.t > cur) map.set(b, p.view);
+  }
+  return map;
+}
+
+function renderCompareTable() {
+  const wrap = $('compareTable');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  const sel = ensureSelectedDate();
+  if (!sel) return;
+
+  const granSec = 1800; // 固定每半小时
+  const history = (state.data && state.data.history) || [];
+
+  const timeSet = new Set();
+  for (const h of history) {
+    for (const p of h.points || []) {
+      if (p.d === sel) timeSet.add(Math.floor(p.t / granSec) * granSec);
+    }
+  }
+  const times = Array.from(timeSet).sort((a, b) => a - b);
+  if (!times.length) {
+    wrap.innerHTML = '<div class="muted">当日暂无数据</div>';
+    return;
+  }
+
+  const groups = COMPARE_GROUPS.map((cfg) => ({
+    label: cfg.label,
+    badge: cfg.badge,
+    vids: history
+      .filter((h) => cfg.match(h))
+      .map((h) => ({
+        h,
+        base: videoBase(h.points || [], sel),
+        viewByBucket: buildViewMap(h.points || [], sel, granSec),
+      })),
+  })).filter((g) => g.vids.length > 0);
+
+  const totalAt = (vids, t) => {
+    let sum = 0;
+    for (const v of vids) {
+      const view = v.viewByBucket.get(t);
+      if (view !== undefined) sum += view - v.base;
+    }
+    return sum;
+  };
+
+  const headRow1 = '<th rowspan="2" class="time-col">时间</th>' +
+    groups.map((g) =>
+      `<th colspan="${g.vids.length + 1}" class="group-head">${escapeHtml(g.label)} <span class="badge">${escapeHtml(g.badge)}</span></th>`
+    ).join('');
+
+  const headRow2 = groups.map((g) =>
+    g.vids.map((v) => `<th title="${escapeHtml(v.h.title)}">${escapeHtml(v.h.bvid)}</th>`).join('') +
+    '<th class="total-col">总涨幅</th>'
+  ).join('');
+
+  const rows = times.map((t) => {
+    const cells = [];
+    for (const g of groups) {
+      for (const v of g.vids) {
+        const view = v.viewByBucket.get(t);
+        cells.push(`<td class="num">${view === undefined ? '<span class="flat">-</span>' : fmt(view)}</td>`);
+      }
+      cells.push(`<td class="num"><span class="delta ${deltaClass(totalAt(g.vids, t))}">${fmtDelta(totalAt(g.vids, t))}</span></td>`);
+    }
+    return `<tr><td class="time-cell">${fmtHour(t)}</td>${cells.join('')}</tr>`;
+  });
+
+  wrap.innerHTML = `
+    <div class="table-wrap compare-wrap">
+      <table>
+        <thead>
+          <tr>${headRow1}</tr>
+          <tr>${headRow2}</tr>
+        </thead>
+        <tbody>${rows.join('')}</tbody>
+      </table>
+    </div>`;
+}
+
 /* ------------------------------ 渲染入口 ------------------------------ */
 
 function render() {
@@ -299,6 +415,7 @@ function render() {
   updateDateSelect();
   renderCols();
   renderChart();
+  renderCompareTable();
 }
 
 const refreshBtn = document.getElementById('btnRefresh');
@@ -308,6 +425,7 @@ const dateSelect = $('dateSelect');
 if (dateSelect) dateSelect.onchange = () => {
   state.selectedDate = dateSelect.value;
   renderChart();
+  renderCompareTable();
 };
 
 const granGroup = $('granGroup');
