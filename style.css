@@ -114,7 +114,7 @@ td.title-cell{white-space:normal}
 tbody td{border-bottom:1px solid rgba(236,72,153,.06)}
 tbody tr:last-child td{border-bottom:none}
 td.num{font-variant-numeric:tabular-nums}
-.vid-title{font-weight:500;color:var(--text-light);white-space:normal;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;overflow-wrap:break-word}
+.vid-title{font-weight:500;color:var(--text-light);white-space:nowrap;line-height:1.35;overflow:hidden}
 .bv{color:var(--muted);font-size:12px}
 
 /* 面板 */
