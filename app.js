@@ -229,6 +229,8 @@ function renderCols() {
       const solo = (g.videos || []).filter((v) => (tagMap[v.bvid] || '') === '单刷');
       if (pk.length) cols.push(buildCol('王橹杰', pk, 'pk'));
       if (solo.length) cols.push(buildCol('王橹杰', solo, '单刷'));
+    } else if (g.name === '杨博文单刷') {
+      cols.push(buildCol('杨博文', g.videos, '单刷'));
     } else {
       cols.push(g);
     }
@@ -330,6 +332,7 @@ function axisTooltip(params) {
 
 const COMPARE_GROUPS = [
   { label: '杨博文', badge: 'PK', color: '#f472b6', match: (h) => h.group === '杨博文' },
+  { label: '杨博文', badge: '单刷', color: '#f472b6', match: (h) => h.group === '杨博文单刷' },
   { label: '王橹杰', badge: 'pk', color: '#2dd4bf', match: (h) => h.group === '王橹杰' && (h.tag || '') !== '单刷' },
   { label: '王橹杰', badge: '单刷', color: '#2dd4bf', match: (h) => h.group === '王橹杰' && (h.tag || '') === '单刷' },
 ];

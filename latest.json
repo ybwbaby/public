@@ -43,6 +43,37 @@
           ]
         },
         {
+          "name": "杨博文单刷",
+          "totalTodayDelta": 0,
+          "topToday": null,
+          "videos": [
+            {
+              "bvid": "BV15egs6pEJp",
+              "title": "杨博文｜Whiplash 2机位精剪 直拍 fancam｜4K60｜260813",
+              "owner": "LOST_杨博文",
+              "viewCur": 0,
+              "viewDelta": 0,
+              "viewTodayDelta": 0
+            },
+            {
+              "bvid": "BV1f1br69ETw",
+              "title": "【4K】春雪 | 杨博文直拍 | 260816 & 260817",
+              "owner": "underthepoplar",
+              "viewCur": 0,
+              "viewDelta": 0,
+              "viewTodayDelta": 0
+            },
+            {
+              "bvid": "BV1qHbb6QErY",
+              "title": "杨博文｜260816第肆象限attention<4k精剪>",
+              "owner": "61strawberry",
+              "viewCur": 0,
+              "viewDelta": 0,
+              "viewTodayDelta": 0
+            }
+          ]
+        },
+        {
           "name": "王橹杰",
           "totalTodayDelta": 155904,
           "topToday": {
@@ -1946,6 +1977,21 @@
             ]
           },
           {
+            "name": "杨博文｜Whiplash 2机位精剪 直拍 fancam｜4K60｜260813",
+            "group": "杨博文单刷",
+            "trend": []
+          },
+          {
+            "name": "【4K】春雪 | 杨博文直拍 | 260816 & 260817",
+            "group": "杨博文单刷",
+            "trend": []
+          },
+          {
+            "name": "杨博文｜260816第肆象限attention<4k精剪>",
+            "group": "杨博文单刷",
+            "trend": []
+          },
+          {
             "name": "【王橹杰FOCUS｜4K直拍】100ways （双日混剪）20260813/14第肆象限【直拍星计划】",
             "group": "王橹杰",
             "trend": [
@@ -3665,97 +3711,133 @@
       "groups": [
         {
           "name": "杨博文",
-          "totalTodayDelta": 214335,
+          "totalTodayDelta": 215040,
           "topToday": {
             "bvid": "BV1qHbb6QErY",
             "title": "杨博文｜260816第肆象限attention<4k精剪>",
             "owner": "61strawberry",
-            "delta": 81247
+            "delta": 81574
           },
           "videos": [
             {
               "bvid": "BV18HbR6mEfh",
               "title": "【杨博文】管他什么音乐丨四机位直拍丨4k精剪",
               "owner": "Kismet丨杨博文",
-              "viewCur": 174035,
-              "viewDelta": 334,
-              "viewTodayDelta": 52223
+              "viewCur": 174162,
+              "viewDelta": 127,
+              "viewTodayDelta": 52350
             },
             {
               "bvid": "BV1f1br69ETw",
               "title": "【4K】春雪 | 杨博文直拍 | 260816 & 260817",
               "owner": "underthepoplar",
-              "viewCur": 191716,
-              "viewDelta": 640,
-              "viewTodayDelta": 80865
+              "viewCur": 191967,
+              "viewDelta": 251,
+              "viewTodayDelta": 81116
             },
             {
               "bvid": "BV1qHbb6QErY",
               "title": "杨博文｜260816第肆象限attention<4k精剪>",
               "owner": "61strawberry",
-              "viewCur": 384007,
-              "viewDelta": 566,
-              "viewTodayDelta": 81247
+              "viewCur": 384334,
+              "viewDelta": 327,
+              "viewTodayDelta": 81574
+            }
+          ]
+        },
+        {
+          "name": "杨博文单刷",
+          "totalTodayDelta": 0,
+          "topToday": {
+            "bvid": "BV15egs6pEJp",
+            "title": "杨博文｜Whiplash 2机位精剪 直拍 fancam｜4K60｜260813",
+            "owner": "LOST_杨博文",
+            "delta": 0
+          },
+          "videos": [
+            {
+              "bvid": "BV15egs6pEJp",
+              "title": "杨博文｜Whiplash 2机位精剪 直拍 fancam｜4K60｜260813",
+              "owner": "LOST_杨博文",
+              "viewCur": 853439,
+              "viewDelta": 0,
+              "viewTodayDelta": 0
+            },
+            {
+              "bvid": "BV1f1br69ETw",
+              "title": "【4K】春雪 | 杨博文直拍 | 260816 & 260817",
+              "owner": "underthepoplar",
+              "viewCur": 191967,
+              "viewDelta": 0,
+              "viewTodayDelta": 0
+            },
+            {
+              "bvid": "BV1qHbb6QErY",
+              "title": "杨博文｜260816第肆象限attention<4k精剪>",
+              "owner": "61strawberry",
+              "viewCur": 384334,
+              "viewDelta": 0,
+              "viewTodayDelta": 0
             }
           ]
         },
         {
           "name": "王橹杰",
-          "totalTodayDelta": 202963,
+          "totalTodayDelta": 203200,
           "topToday": {
             "bvid": "BV1bZaZ6hE54",
             "title": "【王橹杰FOCUS｜4K直拍】100ways （双日混剪）20260813/14第肆象限【直拍星计划】",
             "owner": "Morpheus秩序外_王橹杰",
-            "delta": 60121
+            "delta": 60230
           },
           "videos": [
             {
               "bvid": "BV1bZaZ6hE54",
               "title": "【王橹杰FOCUS｜4K直拍】100ways （双日混剪）20260813/14第肆象限【直拍星计划】",
               "owner": "Morpheus秩序外_王橹杰",
-              "viewCur": 137713,
-              "viewDelta": 173,
-              "viewTodayDelta": 60121
+              "viewCur": 137822,
+              "viewDelta": 109,
+              "viewTodayDelta": 60230
             },
             {
               "bvid": "BV1GNaH6wEjw",
               "title": "【王橹杰FOCUS｜4K直拍】异常加载中 @20260814TF家族第肆象限",
               "owner": "Morpheus秩序外_王橹杰",
-              "viewCur": 131229,
-              "viewDelta": 197,
-              "viewTodayDelta": 41819
+              "viewCur": 131304,
+              "viewDelta": 75,
+              "viewTodayDelta": 41894
             },
             {
               "bvid": "BV1tWgA6SEAn",
               "title": "王橹杰｜4K直拍《摇曳！摇曳！》",
               "owner": "IRIS鸢尾-王橹杰",
-              "viewCur": 281667,
-              "viewDelta": 32,
-              "viewTodayDelta": 49084
+              "viewCur": 281675,
+              "viewDelta": 8,
+              "viewTodayDelta": 49092
             },
             {
               "bvid": "BV1v88q6GE1p",
               "title": "【王橹杰FOCUS｜4K直拍】DADADA",
               "owner": "Morpheus秩序外_王橹杰",
-              "viewCur": 118561,
-              "viewDelta": 45,
-              "viewTodayDelta": 17231
+              "viewCur": 118580,
+              "viewDelta": 19,
+              "viewTodayDelta": 17250
             },
             {
               "bvid": "BV1Nw8H6jEtX",
               "title": "【王橹杰FOCUS｜4K直拍】决战斗室",
               "owner": "Morpheus秩序外_王橹杰",
-              "viewCur": 141589,
-              "viewDelta": 43,
-              "viewTodayDelta": 17619
+              "viewCur": 141604,
+              "viewDelta": 15,
+              "viewTodayDelta": 17634
             },
             {
               "bvid": "BV1txbX6TENr",
               "title": "王橹杰｜4K直拍《刺》",
               "owner": "IRIS鸢尾-王橹杰",
-              "viewCur": 124011,
-              "viewDelta": 36,
-              "viewTodayDelta": 17089
+              "viewCur": 124022,
+              "viewDelta": 11,
+              "viewTodayDelta": 17100
             }
           ]
         }
@@ -3889,7 +3971,8 @@
           1791031800,
           1791032400,
           1791033000,
-          1791033600
+          1791033600,
+          1791033838
         ],
         "series": [
           {
@@ -4407,6 +4490,10 @@
               {
                 "t": 1791033600,
                 "cum": 52223
+              },
+              {
+                "t": 1791033838,
+                "cum": 52350
               }
             ]
           },
@@ -4925,6 +5012,10 @@
               {
                 "t": 1791033600,
                 "cum": 80865
+              },
+              {
+                "t": 1791033838,
+                "cum": 81116
               }
             ]
           },
@@ -5443,6 +5534,40 @@
               {
                 "t": 1791033600,
                 "cum": 81247
+              },
+              {
+                "t": 1791033838,
+                "cum": 81574
+              }
+            ]
+          },
+          {
+            "name": "杨博文｜Whiplash 2机位精剪 直拍 fancam｜4K60｜260813",
+            "group": "杨博文单刷",
+            "trend": [
+              {
+                "t": 1791033838,
+                "cum": 0
+              }
+            ]
+          },
+          {
+            "name": "【4K】春雪 | 杨博文直拍 | 260816 & 260817",
+            "group": "杨博文单刷",
+            "trend": [
+              {
+                "t": 1791033838,
+                "cum": 0
+              }
+            ]
+          },
+          {
+            "name": "杨博文｜260816第肆象限attention<4k精剪>",
+            "group": "杨博文单刷",
+            "trend": [
+              {
+                "t": 1791033838,
+                "cum": 0
               }
             ]
           },
@@ -5961,6 +6086,10 @@
               {
                 "t": 1791033600,
                 "cum": 60121
+              },
+              {
+                "t": 1791033838,
+                "cum": 60230
               }
             ]
           },
@@ -6479,6 +6608,10 @@
               {
                 "t": 1791033600,
                 "cum": 41819
+              },
+              {
+                "t": 1791033838,
+                "cum": 41894
               }
             ]
           },
@@ -6997,6 +7130,10 @@
               {
                 "t": 1791033600,
                 "cum": 49084
+              },
+              {
+                "t": 1791033838,
+                "cum": 49092
               }
             ]
           },
@@ -7163,6 +7300,10 @@
               {
                 "t": 1791033600,
                 "cum": 17231
+              },
+              {
+                "t": 1791033838,
+                "cum": 17250
               }
             ]
           },
@@ -7329,6 +7470,10 @@
               {
                 "t": 1791033600,
                 "cum": 17619
+              },
+              {
+                "t": 1791033838,
+                "cum": 17634
               }
             ]
           },
@@ -7495,6 +7640,10 @@
               {
                 "t": 1791033600,
                 "cum": 17089
+              },
+              {
+                "t": 1791033838,
+                "cum": 17100
               }
             ]
           }
@@ -8848,6 +8997,11 @@
           "t": 1791033600,
           "d": "2026-10-03",
           "view": 174035
+        },
+        {
+          "t": 1791033838,
+          "d": "2026-10-03",
+          "view": 174162
         }
       ]
     },
@@ -10196,6 +10350,11 @@
           "t": 1791033600,
           "d": "2026-10-03",
           "view": 191716
+        },
+        {
+          "t": 1791033838,
+          "d": "2026-10-03",
+          "view": 191967
         }
       ]
     },
@@ -11544,6 +11703,50 @@
           "t": 1791033600,
           "d": "2026-10-03",
           "view": 384007
+        },
+        {
+          "t": 1791033838,
+          "d": "2026-10-03",
+          "view": 384334
+        }
+      ]
+    },
+    {
+      "bvid": "BV15egs6pEJp",
+      "title": "杨博文｜Whiplash 2机位精剪 直拍 fancam｜4K60｜260813",
+      "group": "杨博文单刷",
+      "tag": "",
+      "points": [
+        {
+          "t": 1791033838,
+          "d": "2026-10-03",
+          "view": 853439
+        }
+      ]
+    },
+    {
+      "bvid": "BV1f1br69ETw",
+      "title": "【4K】春雪 | 杨博文直拍 | 260816 & 260817",
+      "group": "杨博文单刷",
+      "tag": "",
+      "points": [
+        {
+          "t": 1791033838,
+          "d": "2026-10-03",
+          "view": 191967
+        }
+      ]
+    },
+    {
+      "bvid": "BV1qHbb6QErY",
+      "title": "杨博文｜260816第肆象限attention<4k精剪>",
+      "group": "杨博文单刷",
+      "tag": "",
+      "points": [
+        {
+          "t": 1791033838,
+          "d": "2026-10-03",
+          "view": 384334
         }
       ]
     },
@@ -12892,6 +13095,11 @@
           "t": 1791033600,
           "d": "2026-10-03",
           "view": 137713
+        },
+        {
+          "t": 1791033838,
+          "d": "2026-10-03",
+          "view": 137822
         }
       ]
     },
@@ -14240,6 +14448,11 @@
           "t": 1791033600,
           "d": "2026-10-03",
           "view": 131229
+        },
+        {
+          "t": 1791033838,
+          "d": "2026-10-03",
+          "view": 131304
         }
       ]
     },
@@ -15588,6 +15801,11 @@
           "t": 1791033600,
           "d": "2026-10-03",
           "view": 281667
+        },
+        {
+          "t": 1791033838,
+          "d": "2026-10-03",
+          "view": 281675
         }
       ]
     },
@@ -15796,6 +16014,11 @@
           "t": 1791033600,
           "d": "2026-10-03",
           "view": 118561
+        },
+        {
+          "t": 1791033838,
+          "d": "2026-10-03",
+          "view": 118580
         }
       ]
     },
@@ -16004,6 +16227,11 @@
           "t": 1791033600,
           "d": "2026-10-03",
           "view": 141589
+        },
+        {
+          "t": 1791033838,
+          "d": "2026-10-03",
+          "view": 141604
         }
       ]
     },
@@ -16212,10 +16440,15 @@
           "t": 1791033600,
           "d": "2026-10-03",
           "view": 124011
+        },
+        {
+          "t": 1791033838,
+          "d": "2026-10-03",
+          "view": 124022
         }
       ]
     }
   ],
-  "lastCollect": 1791033600,
+  "lastCollect": 1791033838,
   "collecting": false
 }
