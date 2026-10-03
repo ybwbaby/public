@@ -136,7 +136,7 @@ td.num{font-variant-numeric:tabular-nums}
 
 /* Excel 明细对比表格 */
 #comparePanel{margin-top:24px}
-.compare-wrap{max-height:60vh}
+.compare-wrap{max-height:none}
 .compare-table .time-col{text-align:center;cursor:pointer;font-size:12px;font-weight:600;white-space:nowrap}
 .compare-table .time-col:hover{color:var(--accent)}
 .compare-table .vid-label,
