@@ -380,7 +380,11 @@ function renderCompareTable() {
     ).join('');
 
   const headRow2 = groups.map((g) =>
-    g.vids.map((v) => `<th title="${escapeHtml(v.h.title)}">${escapeHtml(v.h.bvid)}</th>`).join('') +
+    g.vids.map((v) =>
+      `<th class="vid-head" title="${escapeHtml(v.h.title)}">` +
+      `<span class="vid-bv">${escapeHtml(v.h.bvid)}</span>` +
+      `<span class="vid-name">${escapeHtml(truncate(v.h.title, 12))}</span></th>`
+    ).join('') +
     '<th class="total-col">总涨幅</th>'
   ).join('');
 

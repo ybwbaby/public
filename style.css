@@ -144,6 +144,9 @@ td.num{font-variant-numeric:tabular-nums}
 }
 .compare-table .group-head .badge{font-weight:600}
 .compare-table thead tr:nth-child(2) th{text-align:center}
+.compare-table .vid-head{line-height:1.4}
+.compare-table .vid-bv{display:block;color:var(--muted);font-size:11px;font-weight:500}
+.compare-table .vid-name{display:block;color:var(--text-light);font-size:12px;font-weight:600;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:0 auto}
 .compare-table .time-col,.compare-table .time-cell{text-align:left}
 .compare-table .time-cell{color:var(--muted);font-weight:600}
 .compare-table th.total-col{background:rgba(236,72,153,.14);color:var(--text-light);font-weight:700}
