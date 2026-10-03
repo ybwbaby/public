@@ -109,6 +109,7 @@ thead th{
   font-weight:600;font-size:12px;
 }
 th:first-child,td:first-child{text-align:left}
+.pk-col th:nth-child(n+2),.pk-col td:nth-child(n+2){padding-left:6px;padding-right:6px}
 td.title-cell{white-space:normal}
 tbody td{border-bottom:1px solid rgba(236,72,153,.06)}
 tbody tr:last-child td{border-bottom:none}

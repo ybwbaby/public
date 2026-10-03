@@ -140,6 +140,7 @@ function renderCol(group) {
   col.className = 'pk-col';
 
   const top = group.topToday;
+  const badgeColor = group.name.includes('王橹杰') ? '#2dd4bf' : '';
   const topHtml = top
     ? `
       <div class="top-title" title="${escapeHtml(top.title)}">${escapeHtml(truncate(top.title, 20))}</div>
@@ -163,7 +164,7 @@ function renderCol(group) {
   col.innerHTML = `
     <div class="col-head">
       <div class="col-name">${escapeHtml(group.name)}</div>
-      <div class="col-badge">${colBadge(group.name)}</div>
+      <div class="col-badge"${badgeColor ? ` style="background:rgba(45,212,191,.12);color:${badgeColor}"` : ''}>${colBadge(group.name)}</div>
     </div>
 
     <div class="metric-block">
