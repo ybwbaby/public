@@ -295,9 +295,9 @@ function axisTooltip(params) {
 /* ------------------------------ Excel 明细对比 ------------------------------ */
 
 const COMPARE_GROUPS = [
-  { label: '杨博文', badge: 'PK', match: (h) => h.group === '杨博文' },
-  { label: '王橹杰', badge: 'pk', match: (h) => h.group === '王橹杰' && (h.tag || '') !== '单刷' },
-  { label: '王橹杰新', badge: '单刷', match: (h) => h.group === '王橹杰' && (h.tag || '') === '单刷' },
+  { label: '杨博文', badge: 'PK', color: '#f472b6', match: (h) => h.group === '杨博文' },
+  { label: '王橹杰', badge: 'pk', color: '#2dd4bf', match: (h) => h.group === '王橹杰' && (h.tag || '') !== '单刷' },
+  { label: '王橹杰新', badge: '单刷', color: '#2dd4bf', match: (h) => h.group === '王橹杰' && (h.tag || '') === '单刷' },
 ];
 
 function fmtHour(t) {
@@ -367,6 +367,7 @@ function renderCompareTable() {
   const groups = COMPARE_GROUPS.map((cfg) => ({
     label: cfg.label,
     badge: cfg.badge,
+    color: cfg.color,
     vids: history
       .filter((h) => cfg.match(h))
       .map((h) => {
@@ -395,23 +396,26 @@ function renderCompareTable() {
 
   const bodyRows = [];
   for (const g of groups) {
+    const c = g.color;
     for (const v of g.vids) {
       const cells = times.map((t) => {
         const d = v.deltaMap.get(t);
-        return `<td class="num">${d === undefined ? '<span class="flat">-</span>' : `<span class="delta ${deltaClass(d)}">${fmtDelta(d)}</span>`}</td>`;
+        return d === undefined
+          ? '<td class="num"><span class="flat">-</span></td>'
+          : `<td class="num" style="color:${c}"><span class="delta">${fmtDelta(d)}</span></td>`;
       }).join('');
       bodyRows.push(
-        `<tr><td class="vid-label" title="${escapeHtml(v.h.title)}">` +
+        `<tr><td class="vid-label" style="border-left:3px solid ${c}" title="${escapeHtml(v.h.title)}">` +
         `<span class="vid-bv">${escapeHtml(v.h.bvid)}</span>` +
-        `<div class="vid-name-row"><span class="vid-name">${escapeHtml(truncate(v.h.title, 12))}</span><span class="badge">${escapeHtml(g.badge)}</span></div>` +
+        `<div class="vid-name-row"><span class="vid-dot" style="background:${c}"></span><span class="vid-name">${escapeHtml(truncate(v.h.title, 12))}</span><span class="badge">${escapeHtml(g.badge)}</span></div>` +
         `</td>${cells}</tr>`
       );
     }
     const totalCells = times.map((t) => {
       const total = totalDeltaAt(g.vids, t);
-      return `<td class="num"><span class="delta ${deltaClass(total)}">${fmtDelta(total)}</span></td>`;
+      return `<td class="num" style="color:${c}"><span class="delta">${fmtDelta(total)}</span></td>`;
     }).join('');
-    bodyRows.push(`<tr class="total-row"><td class="vid-label total-label">${escapeHtml(g.label)} 总涨幅</td>${totalCells}</tr>`);
+    bodyRows.push(`<tr class="total-row"><td class="vid-label total-label" style="border-left:3px solid ${c};color:${c}">${escapeHtml(g.label)} 总涨幅</td>${totalCells}</tr>`);
   }
 
   wrap.innerHTML = `
