@@ -3665,97 +3665,97 @@
       "groups": [
         {
           "name": "杨博文",
-          "totalTodayDelta": 161191,
+          "totalTodayDelta": 163116,
           "topToday": {
             "bvid": "BV1qHbb6QErY",
             "title": "杨博文｜260816第肆象限attention<4k精剪>",
             "owner": "61strawberry",
-            "delta": 60388
+            "delta": 61069
           },
           "videos": [
             {
               "bvid": "BV18HbR6mEfh",
               "title": "【杨博文】管他什么音乐丨四机位直拍丨4k精剪",
               "owner": "Kismet丨杨博文",
-              "viewCur": 162656,
-              "viewDelta": 501,
-              "viewTodayDelta": 40844
+              "viewCur": 163128,
+              "viewDelta": 472,
+              "viewTodayDelta": 41316
             },
             {
               "bvid": "BV1f1br69ETw",
               "title": "【4K】春雪 | 杨博文直拍 | 260816 & 260817",
               "owner": "underthepoplar",
-              "viewCur": 170810,
-              "viewDelta": 815,
-              "viewTodayDelta": 59959
+              "viewCur": 171582,
+              "viewDelta": 772,
+              "viewTodayDelta": 60731
             },
             {
               "bvid": "BV1qHbb6QErY",
               "title": "杨博文｜260816第肆象限attention<4k精剪>",
               "owner": "61strawberry",
-              "viewCur": 363148,
-              "viewDelta": 817,
-              "viewTodayDelta": 60388
+              "viewCur": 363829,
+              "viewDelta": 681,
+              "viewTodayDelta": 61069
             }
           ]
         },
         {
           "name": "王橹杰",
-          "totalTodayDelta": 144437,
+          "totalTodayDelta": 145667,
           "topToday": {
             "bvid": "BV1bZaZ6hE54",
             "title": "【王橹杰FOCUS｜4K直拍】100ways （双日混剪）20260813/14第肆象限【直拍星计划】",
             "owner": "Morpheus秩序外_王橹杰",
-            "delta": 54277
+            "delta": 54592
           },
           "videos": [
             {
               "bvid": "BV1bZaZ6hE54",
               "title": "【王橹杰FOCUS｜4K直拍】100ways （双日混剪）20260813/14第肆象限【直拍星计划】",
               "owner": "Morpheus秩序外_王橹杰",
-              "viewCur": 131869,
-              "viewDelta": 311,
-              "viewTodayDelta": 54277
+              "viewCur": 132184,
+              "viewDelta": 315,
+              "viewTodayDelta": 54592
             },
             {
               "bvid": "BV1GNaH6wEjw",
               "title": "【王橹杰FOCUS｜4K直拍】异常加载中 @20260814TF家族第肆象限",
               "owner": "Morpheus秩序外_王橹杰",
-              "viewCur": 124017,
-              "viewDelta": 364,
-              "viewTodayDelta": 34607
+              "viewCur": 124252,
+              "viewDelta": 235,
+              "viewTodayDelta": 34842
             },
             {
               "bvid": "BV1tWgA6SEAn",
               "title": "王橹杰｜4K直拍《摇曳！摇曳！》",
               "owner": "IRIS鸢尾-王橹杰",
-              "viewCur": 280386,
-              "viewDelta": 66,
-              "viewTodayDelta": 47803
+              "viewCur": 280461,
+              "viewDelta": 75,
+              "viewTodayDelta": 47878
             },
             {
               "bvid": "BV1v88q6GE1p",
               "title": "【王橹杰FOCUS｜4K直拍】DADADA",
               "owner": "Morpheus秩序外_王橹杰",
-              "viewCur": 115663,
-              "viewDelta": 207,
-              "viewTodayDelta": 2532
+              "viewCur": 115848,
+              "viewDelta": 185,
+              "viewTodayDelta": 2717
             },
             {
               "bvid": "BV1Nw8H6jEtX",
               "title": "【王橹杰FOCUS｜4K直拍】决战斗室",
               "owner": "Morpheus秩序外_王橹杰",
-              "viewCur": 138584,
-              "viewDelta": 207,
-              "viewTodayDelta": 2626
+              "viewCur": 138814,
+              "viewDelta": 230,
+              "viewTodayDelta": 2856
             },
             {
               "bvid": "BV1txbX6TENr",
               "title": "王橹杰｜4K直拍《刺》",
               "owner": "IRIS鸢尾-王橹杰",
-              "viewCur": 121259,
-              "viewDelta": 212,
-              "viewTodayDelta": 2592
+              "viewCur": 121449,
+              "viewDelta": 190,
+              "viewTodayDelta": 2782
             }
           ]
         }
@@ -3858,7 +3858,8 @@
           1791013200,
           1791013800,
           1791014400,
-          1791015000
+          1791015000,
+          1791015600
         ],
         "series": [
           {
@@ -4252,6 +4253,10 @@
               {
                 "t": 1791015000,
                 "cum": 40844
+              },
+              {
+                "t": 1791015600,
+                "cum": 41316
               }
             ]
           },
@@ -4646,6 +4651,10 @@
               {
                 "t": 1791015000,
                 "cum": 59959
+              },
+              {
+                "t": 1791015600,
+                "cum": 60731
               }
             ]
           },
@@ -5040,6 +5049,10 @@
               {
                 "t": 1791015000,
                 "cum": 60388
+              },
+              {
+                "t": 1791015600,
+                "cum": 61069
               }
             ]
           },
@@ -5434,6 +5447,10 @@
               {
                 "t": 1791015000,
                 "cum": 54277
+              },
+              {
+                "t": 1791015600,
+                "cum": 54592
               }
             ]
           },
@@ -5828,6 +5845,10 @@
               {
                 "t": 1791015000,
                 "cum": 34607
+              },
+              {
+                "t": 1791015600,
+                "cum": 34842
               }
             ]
           },
@@ -6222,6 +6243,10 @@
               {
                 "t": 1791015000,
                 "cum": 47803
+              },
+              {
+                "t": 1791015600,
+                "cum": 47878
               }
             ]
           },
@@ -6252,6 +6277,10 @@
               {
                 "t": 1791015000,
                 "cum": 2532
+              },
+              {
+                "t": 1791015600,
+                "cum": 2717
               }
             ]
           },
@@ -6282,6 +6311,10 @@
               {
                 "t": 1791015000,
                 "cum": 2626
+              },
+              {
+                "t": 1791015600,
+                "cum": 2856
               }
             ]
           },
@@ -6312,6 +6345,10 @@
               {
                 "t": 1791015000,
                 "cum": 2592
+              },
+              {
+                "t": 1791015600,
+                "cum": 2782
               }
             ]
           }
@@ -7509,6 +7546,11 @@
           "t": 1791015000,
           "d": "2026-10-03",
           "view": 162656
+        },
+        {
+          "t": 1791015600,
+          "d": "2026-10-03",
+          "view": 163128
         }
       ]
     },
@@ -8701,6 +8743,11 @@
           "t": 1791015000,
           "d": "2026-10-03",
           "view": 170810
+        },
+        {
+          "t": 1791015600,
+          "d": "2026-10-03",
+          "view": 171582
         }
       ]
     },
@@ -9893,6 +9940,11 @@
           "t": 1791015000,
           "d": "2026-10-03",
           "view": 363148
+        },
+        {
+          "t": 1791015600,
+          "d": "2026-10-03",
+          "view": 363829
         }
       ]
     },
@@ -11085,6 +11137,11 @@
           "t": 1791015000,
           "d": "2026-10-03",
           "view": 131869
+        },
+        {
+          "t": 1791015600,
+          "d": "2026-10-03",
+          "view": 132184
         }
       ]
     },
@@ -12277,6 +12334,11 @@
           "t": 1791015000,
           "d": "2026-10-03",
           "view": 124017
+        },
+        {
+          "t": 1791015600,
+          "d": "2026-10-03",
+          "view": 124252
         }
       ]
     },
@@ -13469,6 +13531,11 @@
           "t": 1791015000,
           "d": "2026-10-03",
           "view": 280386
+        },
+        {
+          "t": 1791015600,
+          "d": "2026-10-03",
+          "view": 280461
         }
       ]
     },
@@ -13506,6 +13573,11 @@
           "t": 1791015000,
           "d": "2026-10-03",
           "view": 115663
+        },
+        {
+          "t": 1791015600,
+          "d": "2026-10-03",
+          "view": 115848
         }
       ]
     },
@@ -13543,6 +13615,11 @@
           "t": 1791015000,
           "d": "2026-10-03",
           "view": 138584
+        },
+        {
+          "t": 1791015600,
+          "d": "2026-10-03",
+          "view": 138814
         }
       ]
     },
@@ -13580,10 +13657,15 @@
           "t": 1791015000,
           "d": "2026-10-03",
           "view": 121259
+        },
+        {
+          "t": 1791015600,
+          "d": "2026-10-03",
+          "view": 121449
         }
       ]
     }
   ],
-  "lastCollect": 1791015000,
+  "lastCollect": 1791015600,
   "collecting": false
 }
