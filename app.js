@@ -334,6 +334,14 @@ const COMPARE_GROUPS = [
   { label: '王橹杰新', badge: '单刷', color: '#2dd4bf', match: (h) => h.group === '王橹杰' && (h.tag || '') === '单刷' },
 ];
 
+function hexRgba(hex, a) {
+  const m = hex.replace('#', '');
+  const r = parseInt(m.slice(0, 2), 16);
+  const g = parseInt(m.slice(2, 4), 16);
+  const b = parseInt(m.slice(4, 6), 16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+
 function fmtHour(t) {
   const d = new Date(t * 1000);
   const p = (x) => String(x).padStart(2, '0');
@@ -431,6 +439,7 @@ function renderCompareTable() {
   const bodyRows = [];
   for (const g of groups) {
     const c = g.color;
+    const bg = hexRgba(c, 0.12);
     for (const v of g.vids) {
       const cells = times.map((t) => {
         const d = v.deltaMap.get(t);
@@ -447,9 +456,9 @@ function renderCompareTable() {
     }
     const totalCells = times.map((t) => {
       const total = totalDeltaAt(g.vids, t);
-      return `<td class="num" style="color:${c}"><span class="delta">${fmtDelta(total)}</span></td>`;
+      return `<td class="num" style="color:${c};background:${bg}"><span class="delta">${fmtDelta(total)}</span></td>`;
     }).join('');
-    bodyRows.push(`<tr class="total-row"><td class="vid-label total-label" style="border-left:3px solid ${c};color:${c}">${escapeHtml(g.label)} 总涨幅</td>${totalCells}</tr>`);
+    bodyRows.push(`<tr class="total-row"><td class="vid-label total-label" style="border-left:3px solid ${c};color:${c};background:${bg}">${escapeHtml(g.label)} 总涨幅</td>${totalCells}</tr>`);
   }
 
   wrap.innerHTML = `
