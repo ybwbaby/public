@@ -163,7 +163,7 @@ function renderCol(group) {
   col.innerHTML = `
     <div class="col-head">
       <div class="col-name">${escapeHtml(group.name)}</div>
-      <div class="col-badge">${group.name.includes('王橹杰') ? '🦌' : '🐰'}</div>
+      <div class="col-badge">${colBadge(group.name)}</div>
     </div>
 
     <div class="metric-block">
@@ -194,6 +194,12 @@ function renderCol(group) {
     </div>
   `;
   return col;
+}
+
+function colBadge(name) {
+  if (name === '杨博文') return 'PK';
+  if (name === '王橹杰') return 'pk';
+  return '单刷';
 }
 
 function buildCol(name, videos) {

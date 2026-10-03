@@ -76,7 +76,7 @@ body::before{
 main{padding:24px 20px 60px;max-width:1260px;margin:0 auto;position:relative;z-index:1}
 
 /* 左右两列 */
-.pk-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.pk-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px}
 
 .pk-col{
   background:var(--glass);border:1px solid var(--glass-border);
