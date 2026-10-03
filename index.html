@@ -43,9 +43,17 @@
     <!-- Excel 明细对比（每半小时） -->
     <section class="panel" id="comparePanel">
       <div class="panel-head">
-        <h2>Excel 明细对比（每半小时）</h2>
+        <h2>Excel 明细对比</h2>
         <div class="panel-controls">
-          <span class="muted">数值 = 时段涨幅（每半小时新增播放量）</span>
+          <div class="toggle-group" id="compareGranGroup" title="统计粒度">
+            <button class="toggle-btn active" data-gran="1800">半小时</button>
+            <button class="toggle-btn" data-gran="3600">1小时</button>
+            <button class="toggle-btn" data-gran="7200">2小时</button>
+            <button class="toggle-btn" data-gran="14400">4小时</button>
+            <button class="toggle-btn" data-gran="21600">6小时</button>
+            <button class="toggle-btn" data-gran="43200">12小时</button>
+            <button class="toggle-btn" data-gran="86400">24小时</button>
+          </div>
         </div>
       </div>
       <div id="compareTable" class="compare-table"></div>

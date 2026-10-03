@@ -1,6 +1,6 @@
 'use strict';
 
-const state = { data: null, selectedDate: null, gran: 600, compareOrder: 'desc' };
+const state = { data: null, selectedDate: null, gran: 600, compareOrder: 'desc', compareGran: 1800 };
 let chart = null;
 let chartEl = null;
 
@@ -347,7 +347,7 @@ function renderCompareTable() {
   const sel = ensureSelectedDate();
   if (!sel) return;
 
-  const granSec = 1800; // 固定每半小时
+  const granSec = state.compareGran || 1800; // 默认半小时
   const history = (state.data && state.data.history) || [];
 
   const timeSet = new Set();
@@ -453,6 +453,16 @@ if (granGroup) granGroup.onclick = (e) => {
   granGroup.querySelectorAll('.toggle-btn').forEach((b) => b.classList.remove('active'));
   btn.classList.add('active');
   renderChart();
+};
+
+const compareGranGroup = $('compareGranGroup');
+if (compareGranGroup) compareGranGroup.onclick = (e) => {
+  const btn = e.target.closest('[data-gran]');
+  if (!btn) return;
+  state.compareGran = Number(btn.dataset.gran);
+  compareGranGroup.querySelectorAll('.toggle-btn').forEach((b) => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderCompareTable();
 };
 
 // 点击时间列头切换升/降序
