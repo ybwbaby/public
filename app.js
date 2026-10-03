@@ -163,7 +163,7 @@ function renderCol(group) {
   col.innerHTML = `
     <div class="col-head">
       <div class="col-name">${escapeHtml(group.name)}</div>
-      <div class="col-badge">${group.name === '王橹杰' ? '🦌' : '🐰'}</div>
+      <div class="col-badge">${group.name.includes('王橹杰') ? '🦌' : '🐰'}</div>
     </div>
 
     <div class="metric-block">
@@ -196,12 +196,37 @@ function renderCol(group) {
   return col;
 }
 
+function buildCol(name, videos) {
+  const totalTodayDelta = videos.reduce((s, v) => s + (Number(v.viewTodayDelta) || 0), 0);
+  let top = null;
+  for (const v of videos) {
+    const d = Number(v.viewTodayDelta) || 0;
+    if (!top || d > top.delta) top = { title: v.title, owner: v.owner || '', delta: d };
+  }
+  return { name, totalTodayDelta, topToday: top, videos };
+}
+
 function renderCols() {
   const day = latestDay();
   const wrap = $('pkCols');
   wrap.innerHTML = '';
   if (!day) return;
-  for (const g of day.groups || []) wrap.appendChild(renderCol(g));
+
+  const tagMap = {};
+  for (const h of (state.data && state.data.history) || []) tagMap[h.bvid] = h.tag || '';
+
+  const cols = [];
+  for (const g of day.groups || []) {
+    if (g.name === '王橹杰') {
+      const pk = (g.videos || []).filter((v) => (tagMap[v.bvid] || '') !== '单刷');
+      const solo = (g.videos || []).filter((v) => (tagMap[v.bvid] || '') === '单刷');
+      if (pk.length) cols.push(buildCol('王橹杰', pk));
+      if (solo.length) cols.push(buildCol('王橹杰新', solo));
+    } else {
+      cols.push(g);
+    }
+  }
+  for (const c of cols) wrap.appendChild(renderCol(c));
 }
 
 /* ------------------------------ 趋势图 ------------------------------ */
