@@ -137,19 +137,23 @@ td.num{font-variant-numeric:tabular-nums}
 /* Excel 明细对比表格 */
 #comparePanel{margin-top:24px}
 .compare-wrap{max-height:60vh}
-.compare-table .group-head{
-  text-align:center;font-weight:700;color:var(--text-light);font-size:13px;
-  background:rgba(236,72,153,.08);
-  border-left:1px solid rgba(236,72,153,.14);
+.compare-table .time-col{text-align:center;cursor:pointer;font-size:12px;font-weight:600;white-space:nowrap}
+.compare-table .time-col:hover{color:var(--accent)}
+.compare-table .vid-label,
+.compare-table thead th.vid-head.corner{
+  position:sticky;left:0;background:var(--glass);z-index:2;
 }
-.compare-table .group-head .badge{font-weight:600}
-.compare-table thead tr:nth-child(2) th{text-align:center}
-.compare-table .vid-head{line-height:1.4}
-.compare-table .vid-bv{display:block;color:var(--muted);font-size:11px;font-weight:500}
-.compare-table .vid-name{display:block;color:var(--text-light);font-size:12px;font-weight:600;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:0 auto}
-.compare-table .time-col,.compare-table .time-cell{text-align:left}
-.compare-table .time-cell{color:var(--muted);font-weight:600}
-.compare-table th.total-col{background:rgba(236,72,153,.14);color:var(--text-light);font-weight:700}
+.compare-table thead th.vid-head.corner{background:rgba(236,72,153,.05);z-index:3;text-align:left;font-weight:600;color:var(--text-light)}
+.compare-table .vid-label{text-align:left;line-height:1.4}
+.compare-table .vid-label .vid-bv{display:block;color:var(--muted);font-size:11px;font-weight:500}
+.compare-table .vid-label .vid-name{display:block;color:var(--text-light);font-size:12px;font-weight:600;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.compare-table tr.group-label td{
+  background:rgba(236,72,153,.08);color:var(--text-light);font-weight:700;font-size:13px;
+  text-align:left;position:sticky;left:0;
+}
+.compare-table tr.total-row td{background:rgba(236,72,153,.06)}
+.compare-table tr.total-row .total-label{font-weight:700;color:var(--text-light)}
+.compare-table tr.total-row td.num{font-weight:600}
 
 .up{color:var(--up)}.down{color:var(--down)}.flat{color:var(--muted)}
 .delta{font-weight:600}

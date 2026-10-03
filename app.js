@@ -1,6 +1,6 @@
 'use strict';
 
-const state = { data: null, selectedDate: null, gran: 600 };
+const state = { data: null, selectedDate: null, gran: 600, compareOrder: 'desc' };
 let chart = null;
 let chartEl = null;
 
@@ -347,7 +347,9 @@ function renderCompareTable() {
       if (p.d === sel) timeSet.add(Math.floor(p.t / granSec) * granSec);
     }
   }
-  const times = Array.from(timeSet).sort((a, b) => a - b);
+  const times = Array.from(timeSet).sort((a, b) =>
+    state.compareOrder === 'desc' ? b - a : a - b
+  );
   if (!times.length) {
     wrap.innerHTML = '<div class="muted">当日暂无数据</div>';
     return;
@@ -374,40 +376,39 @@ function renderCompareTable() {
     return sum;
   };
 
-  const headRow1 = '<th rowspan="2" class="time-col">时间</th>' +
-    groups.map((g) =>
-      `<th colspan="${g.vids.length + 1}" class="group-head">${escapeHtml(g.label)} <span class="badge">${escapeHtml(g.badge)}</span></th>`
-    ).join('');
-
-  const headRow2 = groups.map((g) =>
-    g.vids.map((v) =>
-      `<th class="vid-head" title="${escapeHtml(v.h.title)}">` +
-      `<span class="vid-bv">${escapeHtml(v.h.bvid)}</span>` +
-      `<span class="vid-name">${escapeHtml(truncate(v.h.title, 12))}</span></th>`
-    ).join('') +
-    '<th class="total-col">总涨幅</th>'
+  const arrow = state.compareOrder === 'desc' ? '↓' : '↑';
+  const headCells = times.map((t, i) =>
+    `<th class="time-col sortable" title="点击切换时间排序">${fmtHour(t)}${i === 0 ? ' ' + arrow : ''}</th>`
   ).join('');
 
-  const rows = times.map((t) => {
-    const cells = [];
-    for (const g of groups) {
-      for (const v of g.vids) {
+  const bodyRows = [];
+  for (const g of groups) {
+    bodyRows.push(
+      `<tr class="group-label"><td colspan="${times.length + 1}">${escapeHtml(g.label)} <span class="badge">${escapeHtml(g.badge)}</span></td></tr>`
+    );
+    for (const v of g.vids) {
+      const cells = times.map((t) => {
         const view = v.viewByBucket.get(t);
-        cells.push(`<td class="num">${view === undefined ? '<span class="flat">-</span>' : fmt(view)}</td>`);
-      }
-      cells.push(`<td class="num"><span class="delta ${deltaClass(totalAt(g.vids, t))}">${fmtDelta(totalAt(g.vids, t))}</span></td>`);
+        return `<td class="num">${view === undefined ? '<span class="flat">-</span>' : fmt(view)}</td>`;
+      }).join('');
+      bodyRows.push(
+        `<tr><td class="vid-label" title="${escapeHtml(v.h.title)}"><span class="vid-bv">${escapeHtml(v.h.bvid)}</span><span class="vid-name">${escapeHtml(truncate(v.h.title, 12))}</span></td>${cells}</tr>`
+      );
     }
-    return `<tr><td class="time-cell">${fmtHour(t)}</td>${cells.join('')}</tr>`;
-  });
+    const totalCells = times.map((t) => {
+      const total = totalAt(g.vids, t);
+      return `<td class="num"><span class="delta ${deltaClass(total)}">${fmtDelta(total)}</span></td>`;
+    }).join('');
+    bodyRows.push(`<tr class="total-row"><td class="vid-label total-label">总涨幅</td>${totalCells}</tr>`);
+  }
 
   wrap.innerHTML = `
     <div class="table-wrap compare-wrap">
       <table>
         <thead>
-          <tr>${headRow1}</tr>
-          <tr>${headRow2}</tr>
+          <tr><th class="vid-head corner">视频</th>${headCells}</tr>
         </thead>
-        <tbody>${rows.join('')}</tbody>
+        <tbody>${bodyRows.join('')}</tbody>
       </table>
     </div>`;
 }
@@ -441,6 +442,13 @@ if (granGroup) granGroup.onclick = (e) => {
   btn.classList.add('active');
   renderChart();
 };
+
+// 点击时间列头切换升/降序
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.time-col.sortable')) return;
+  state.compareOrder = state.compareOrder === 'desc' ? 'asc' : 'desc';
+  renderCompareTable();
+});
 
 fetchData();
 setInterval(fetchData, 60000); // 数据 10 分钟采集一次，60 秒轮询即可
