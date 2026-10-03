@@ -146,11 +146,8 @@ td.num{font-variant-numeric:tabular-nums}
 .compare-table thead th.vid-head.corner{background:rgba(236,72,153,.05);z-index:3;text-align:left;font-weight:600;color:var(--text-light)}
 .compare-table .vid-label{text-align:left;line-height:1.4}
 .compare-table .vid-label .vid-bv{display:block;color:var(--muted);font-size:11px;font-weight:500}
-.compare-table .vid-label .vid-name{display:block;color:var(--text-light);font-size:12px;font-weight:600;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.compare-table tr.group-label td{
-  background:rgba(236,72,153,.08);color:var(--text-light);font-weight:700;font-size:13px;
-  text-align:left;position:sticky;left:0;
-}
+.compare-table .vid-label .vid-name-row{display:flex;align-items:center;gap:6px}
+.compare-table .vid-label .vid-name{color:var(--text-light);font-size:12px;font-weight:600;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .compare-table tr.total-row td{background:rgba(236,72,153,.06)}
 .compare-table tr.total-row .total-label{font-weight:700;color:var(--text-light)}
 .compare-table tr.total-row td.num{font-weight:600}

@@ -320,13 +320,22 @@ function videoBase(pts, dateKey) {
   return 0;
 }
 
-function buildViewMap(pts, dateKey, granSec) {
-  const map = new Map();
+function buildDeltaMap(pts, dateKey, granSec, base) {
+  // 每个半小时桶的「时段涨幅」= 桶末播放量 - 前一桶末播放量（首桶相对基线 base）
+  const byBucket = new Map();
   for (const p of pts) {
     if (p.d !== dateKey) continue;
     const b = Math.floor(p.t / granSec) * granSec;
-    const cur = map.get(b);
-    if (cur === undefined || p.t > cur) map.set(b, p.view);
+    const cur = byBucket.get(b);
+    if (cur === undefined || p.t > cur) byBucket.set(b, p.view);
+  }
+  const ts = Array.from(byBucket.keys()).sort((a, b) => a - b);
+  const map = new Map();
+  let prev = base;
+  for (const t of ts) {
+    const view = byBucket.get(t);
+    map.set(t, view - prev);
+    prev = view;
   }
   return map;
 }
@@ -360,18 +369,21 @@ function renderCompareTable() {
     badge: cfg.badge,
     vids: history
       .filter((h) => cfg.match(h))
-      .map((h) => ({
-        h,
-        base: videoBase(h.points || [], sel),
-        viewByBucket: buildViewMap(h.points || [], sel, granSec),
-      })),
+      .map((h) => {
+        const base = videoBase(h.points || [], sel);
+        return {
+          h,
+          base,
+          deltaMap: buildDeltaMap(h.points || [], sel, granSec, base),
+        };
+      }),
   })).filter((g) => g.vids.length > 0);
 
-  const totalAt = (vids, t) => {
+  const totalDeltaAt = (vids, t) => {
     let sum = 0;
     for (const v of vids) {
-      const view = v.viewByBucket.get(t);
-      if (view !== undefined) sum += view - v.base;
+      const d = v.deltaMap.get(t);
+      if (d !== undefined) sum += d;
     }
     return sum;
   };
@@ -383,23 +395,23 @@ function renderCompareTable() {
 
   const bodyRows = [];
   for (const g of groups) {
-    bodyRows.push(
-      `<tr class="group-label"><td colspan="${times.length + 1}">${escapeHtml(g.label)} <span class="badge">${escapeHtml(g.badge)}</span></td></tr>`
-    );
     for (const v of g.vids) {
       const cells = times.map((t) => {
-        const view = v.viewByBucket.get(t);
-        return `<td class="num">${view === undefined ? '<span class="flat">-</span>' : fmt(view)}</td>`;
+        const d = v.deltaMap.get(t);
+        return `<td class="num">${d === undefined ? '<span class="flat">-</span>' : `<span class="delta ${deltaClass(d)}">${fmtDelta(d)}</span>`}</td>`;
       }).join('');
       bodyRows.push(
-        `<tr><td class="vid-label" title="${escapeHtml(v.h.title)}"><span class="vid-bv">${escapeHtml(v.h.bvid)}</span><span class="vid-name">${escapeHtml(truncate(v.h.title, 12))}</span></td>${cells}</tr>`
+        `<tr><td class="vid-label" title="${escapeHtml(v.h.title)}">` +
+        `<span class="vid-bv">${escapeHtml(v.h.bvid)}</span>` +
+        `<div class="vid-name-row"><span class="vid-name">${escapeHtml(truncate(v.h.title, 12))}</span><span class="badge">${escapeHtml(g.badge)}</span></div>` +
+        `</td>${cells}</tr>`
       );
     }
     const totalCells = times.map((t) => {
-      const total = totalAt(g.vids, t);
+      const total = totalDeltaAt(g.vids, t);
       return `<td class="num"><span class="delta ${deltaClass(total)}">${fmtDelta(total)}</span></td>`;
     }).join('');
-    bodyRows.push(`<tr class="total-row"><td class="vid-label total-label">总涨幅</td>${totalCells}</tr>`);
+    bodyRows.push(`<tr class="total-row"><td class="vid-label total-label">${escapeHtml(g.label)} 总涨幅</td>${totalCells}</tr>`);
   }
 
   wrap.innerHTML = `
