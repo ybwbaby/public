@@ -261,8 +261,16 @@ function renderChart() {
   const gran = state.gran || 600;
   const history = (state.data && state.data.history) || [];
 
+  // 同一 BV 跨组去重，趋势线只画一条
+  const seenBvid = new Set();
+  const uniqueHistory = history.filter((h) => {
+    if (seenBvid.has(h.bvid)) return false;
+    seenBvid.add(h.bvid);
+    return true;
+  });
+
   // 每个视频一条「该粒度内新增」曲线，统一按时间桶对齐（任意时间范围 × 任意粒度正交组合）
-  const rawSeries = history.map((h) => {
+  const rawSeries = uniqueHistory.map((h) => {
     const s = buildSeries(h, gran);
     return { name: h.title, group: h.group, buckets: s.buckets.filter((b) => dateSet.has(b.d)) };
   });
