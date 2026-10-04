@@ -1,6 +1,6 @@
 'use strict';
 
-const state = { data: null, selectedDate: null, gran: 600, compareOrder: 'desc', compareGran: 1800 };
+const state = { data: null, selectedDate: null, chartStartDate: null, gran: 600, compareOrder: 'desc', compareGran: 1800 };
 const TZ_OFFSET = 8 * 3600; // 北京时间 UTC+8，用于把时间桶边界对齐到本地午夜
 let chart = null;
 let chartEl = null;
@@ -78,6 +78,23 @@ function ensureSelectedDate() {
   return state.selectedDate;
 }
 
+function ensureChartStartDate() {
+  const d = state.data;
+  if (!d || !d.dates || !d.dates.length) return null;
+  if (!state.chartStartDate || !d.dates.includes(state.chartStartDate)) {
+    state.chartStartDate = d.dates[d.dates.length - 1];
+  }
+  return state.chartStartDate;
+}
+
+function dateRangeFrom(startDate) {
+  // 从起始日期到最新日期的连续日期序列（dates 为升序）
+  const dates = (state.data && state.data.dates) || [];
+  if (!dates.length || !startDate) return [];
+  const idx = dates.indexOf(startDate);
+  return idx < 0 ? [startDate] : dates.slice(idx);
+}
+
 function latestDay() {
   const d = state.data;
   if (!d || !d.days) return null;
@@ -94,19 +111,20 @@ function formatDateLabel(d) {
 function updateDateSelect() {
   const dates = (state.data && state.data.dates) || [];
   if (!dates.length) return;
-  ensureSelectedDate(); // 确保 selectedDate 有效
+  ensureSelectedDate();     // 确保 selectedDate 有效（Excel 单日）
+  ensureChartStartDate();   // 确保 chartStartDate 有效（趋势图起始）
   const desc = [...dates].reverse(); // 降序：最新日期在最上面
-  const opts = desc
+  const renderOpts = (current) => desc
     .map((d, i) => {
       const latest = i === 0 ? '（最新）' : '';
-      const selected = d === state.selectedDate ? ' selected' : '';
+      const selected = d === current ? ' selected' : '';
       return `<option value="${d}"${selected}>${formatDateLabel(d)}${latest}</option>`;
     })
     .join('');
   const sel = $('dateSelect');
-  if (sel) sel.innerHTML = opts;
+  if (sel) sel.innerHTML = renderOpts(state.chartStartDate);
   const sel2 = $('compareDateSelect');
-  if (sel2) sel2.innerHTML = opts;
+  if (sel2) sel2.innerHTML = renderOpts(state.selectedDate);
 }
 
 function buildSeries(h, granSec) {
@@ -266,8 +284,8 @@ function renderChart() {
   initChart();
   if (!chart) return;
 
-  const sel = ensureSelectedDate();
-  const dateSet = new Set(sel ? [sel] : []);
+  const start = ensureChartStartDate();
+  const dateSet = new Set(dateRangeFrom(start));
   const gran = state.gran || 600;
   const history = (state.data && state.data.history) || [];
 
@@ -506,20 +524,20 @@ function render() {
 const refreshBtn = document.getElementById('btnRefresh');
 if (refreshBtn) refreshBtn.onclick = fetchData;
 
-function onDateChange(val) {
-  state.selectedDate = val;
-  const sel = $('dateSelect');
-  if (sel) sel.value = val;
-  const sel2 = $('compareDateSelect');
-  if (sel2) sel2.value = val;
+function onChartDateChange(val) {
+  state.chartStartDate = val;
   renderChart();
+}
+
+function onCompareDateChange(val) {
+  state.selectedDate = val;
   renderCompareTable();
 }
 
 const dateSelect = $('dateSelect');
-if (dateSelect) dateSelect.onchange = () => onDateChange(dateSelect.value);
+if (dateSelect) dateSelect.onchange = () => onChartDateChange(dateSelect.value);
 const compareDateSelect = $('compareDateSelect');
-if (compareDateSelect) compareDateSelect.onchange = () => onDateChange(compareDateSelect.value);
+if (compareDateSelect) compareDateSelect.onchange = () => onCompareDateChange(compareDateSelect.value);
 
 const granGroup = $('granGroup');
 if (granGroup) granGroup.onclick = (e) => {
