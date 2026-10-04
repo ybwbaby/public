@@ -1,6 +1,7 @@
 'use strict';
 
 const state = { data: null, selectedDate: null, gran: 600, compareOrder: 'desc', compareGran: 1800 };
+const TZ_OFFSET = 8 * 3600; // 北京时间 UTC+8，用于把时间桶边界对齐到本地午夜
 let chart = null;
 let chartEl = null;
 
@@ -94,9 +95,10 @@ function updateDateSelect() {
   const dates = (state.data && state.data.dates) || [];
   if (!dates.length) return;
   ensureSelectedDate(); // 确保 selectedDate 有效
-  const opts = dates
+  const desc = [...dates].reverse(); // 降序：最新日期在最上面
+  const opts = desc
     .map((d, i) => {
-      const latest = i === dates.length - 1 ? '（最新）' : '';
+      const latest = i === 0 ? '（最新）' : '';
       const selected = d === state.selectedDate ? ' selected' : '';
       return `<option value="${d}"${selected}>${formatDateLabel(d)}${latest}</option>`;
     })
@@ -112,10 +114,10 @@ function buildSeries(h, granSec) {
   const buckets = [];
   if (!pts.length) return { name: h.title, group: h.group, buckets };
 
-  // 每个时间桶取最后一个节点；跨相邻桶求「该粒度内的新增」
+  // 每个时间桶取最后一个节点；跨相邻桶求「该粒度内的新增」（桶边界对齐北京时间午夜，而非 UTC）
   const last = new Map();
   for (const p of pts) {
-    const b = Math.floor(p.t / granSec);
+    const b = Math.floor((p.t + TZ_OFFSET) / granSec);
     const cur = last.get(b);
     if (!cur || p.t > cur.t) last.set(b, p);
   }
@@ -124,7 +126,7 @@ function buildSeries(h, granSec) {
   for (const b of keys) {
     const p = last.get(b);
     buckets.push({
-      t: b * granSec, // 桶起始时间，作为统一 x 轴刻度
+      t: b * granSec - TZ_OFFSET, // 桶起始时间（北京时间 0 点对齐）
       d: p.d,
       delta: prevView === null ? null : p.view - prevView,
     });
@@ -386,7 +388,7 @@ function buildDeltaMap(pts, dateKey, granSec, base) {
   const byBucket = new Map();
   for (const p of pts) {
     if (p.d !== dateKey) continue;
-    const b = Math.floor(p.t / granSec) * granSec;
+    const b = Math.floor((p.t + TZ_OFFSET) / granSec) * granSec - TZ_OFFSET;
     const cur = byBucket.get(b);
     if (cur === undefined || p.t > cur) byBucket.set(b, p.view);
   }
@@ -414,7 +416,7 @@ function renderCompareTable() {
   const timeSet = new Set();
   for (const h of history) {
     for (const p of h.points || []) {
-      if (p.d === sel) timeSet.add(Math.floor(p.t / granSec) * granSec);
+      if (p.d === sel) timeSet.add(Math.floor((p.t + TZ_OFFSET) / granSec) * granSec - TZ_OFFSET);
     }
   }
   const times = Array.from(timeSet).sort((a, b) =>
