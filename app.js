@@ -239,24 +239,19 @@ function renderCols() {
   wrap.innerHTML = '';
   if (!day) return;
 
-  const tagMap = {};
-  for (const h of (state.data && state.data.history) || []) tagMap[h.bvid] = h.tag || '';
-
   const solo = [];
   const pk = [];
   for (const g of day.groups || []) {
-    if (g.name === '王橹杰') {
-      const pkVids = (g.videos || []).filter((v) => (tagMap[v.bvid] || '') !== '单刷');
-      const soloVids = (g.videos || []).filter((v) => (tagMap[v.bvid] || '') === '单刷');
-      if (soloVids.length) solo.push(buildCol('王橹杰', soloVids, '单刷'));
-      if (pkVids.length) pk.push(buildCol('王橹杰', pkVids, 'pk'));
-    } else if (g.name === '杨博文冲刺') {
+    if (g.name === '王橹杰') continue; // 王橹杰已停止采集，不再展示
+    if (g.name === '杨博文冲刺') {
       solo.push(buildCol('杨博文', g.videos, '冲刺'));
+    } else if (g.name === '杨博文冲刺2') {
+      solo.push(buildCol('杨博文', g.videos, '冲刺2'));
     } else {
       pk.push(g);
     }
   }
-  // 单刷放左列：按人物交错，同人物「单刷」在前、「PK」在后
+  // 冲刺放左列、PK 放右列
   const cols = [];
   const n = Math.max(solo.length, pk.length);
   for (let i = 0; i < n; i++) {
@@ -369,8 +364,7 @@ function axisTooltip(params) {
 const COMPARE_GROUPS = [
   { label: '杨博文', badge: 'PK', color: '#f472b6', match: (h) => h.group === '杨博文' },
   { label: '杨博文', badge: '冲刺', color: '#f472b6', match: (h) => h.group === '杨博文冲刺' },
-  { label: '王橹杰', badge: 'pk', color: '#2dd4bf', match: (h) => h.group === '王橹杰' && (h.tag || '') !== '单刷' },
-  { label: '王橹杰', badge: '单刷', color: '#2dd4bf', match: (h) => h.group === '王橹杰' && (h.tag || '') === '单刷' },
+  { label: '杨博文', badge: '冲刺2', color: '#f472b6', match: (h) => h.group === '杨博文冲刺2' },
 ];
 
 function hexRgba(hex, a) {
