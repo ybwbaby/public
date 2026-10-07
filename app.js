@@ -243,6 +243,7 @@ function renderCols() {
   const pk = [];
   for (const g of day.groups || []) {
     if (g.name === '王橹杰') continue; // 王橹杰已停止采集，不再展示
+    if (g.name === '杨博文') continue; // 隐藏 PK 分组
     if (g.name === '杨博文冲刺') {
       solo.push(buildCol('杨博文', g.videos, '冲刺'));
     } else if (g.name === '杨博文冲刺2') {
