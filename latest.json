@@ -109551,109 +109551,109 @@
       "groups": [
         {
           "name": "杨博文",
-          "totalTodayDelta": 13458,
+          "totalTodayDelta": 13761,
           "topToday": {
             "bvid": "BV1f1br69ETw",
             "title": "【4K】春雪 | 杨博文直拍 | 260816 & 260817",
             "owner": "underthepoplar",
-            "delta": 6664
+            "delta": 6816
           },
           "videos": [
             {
               "bvid": "BV1mX8z6NEzz",
               "title": "【4K精剪】管他什么音乐 | 杨博文直拍 | 260816",
               "owner": "underthepoplar",
-              "viewCur": 1090691,
-              "viewDelta": 2,
-              "viewTodayDelta": 206
+              "viewCur": 1090696,
+              "viewDelta": 5,
+              "viewTodayDelta": 211
             },
             {
               "bvid": "BV1f1br69ETw",
               "title": "【4K】春雪 | 杨博文直拍 | 260816 & 260817",
               "owner": "underthepoplar",
-              "viewCur": 583527,
-              "viewDelta": 129,
-              "viewTodayDelta": 6664
+              "viewCur": 583679,
+              "viewDelta": 152,
+              "viewTodayDelta": 6816
             },
             {
               "bvid": "BV1qHbb6QErY",
               "title": "杨博文｜260816第肆象限attention<4k精剪>",
               "owner": "61strawberry",
-              "viewCur": 777958,
-              "viewDelta": 156,
-              "viewTodayDelta": 6588
+              "viewCur": 778104,
+              "viewDelta": 146,
+              "viewTodayDelta": 6734
             }
           ]
         },
         {
           "name": "杨博文冲刺",
-          "totalTodayDelta": 20054,
+          "totalTodayDelta": 20503,
           "topToday": {
             "bvid": "BV1W5gs6KEhr",
             "title": "【4K精剪】异常加载中 | 杨博文直拍 | 四天混剪 | 第肆象限演唱会",
             "owner": "underthepoplar",
-            "delta": 6802
+            "delta": 6953
           },
           "videos": [
             {
               "bvid": "BV1f1br69ETw",
               "title": "【4K】春雪 | 杨博文直拍 | 260816 & 260817",
               "owner": "underthepoplar",
-              "viewCur": 583527,
-              "viewDelta": 129,
-              "viewTodayDelta": 6664
+              "viewCur": 583679,
+              "viewDelta": 152,
+              "viewTodayDelta": 6816
             },
             {
               "bvid": "BV1W5gs6KEhr",
               "title": "【4K精剪】异常加载中 | 杨博文直拍 | 四天混剪 | 第肆象限演唱会",
               "owner": "underthepoplar",
-              "viewCur": 855795,
-              "viewDelta": 133,
-              "viewTodayDelta": 6802
+              "viewCur": 855946,
+              "viewDelta": 151,
+              "viewTodayDelta": 6953
             },
             {
               "bvid": "BV1qHbb6QErY",
               "title": "杨博文｜260816第肆象限attention<4k精剪>",
               "owner": "61strawberry",
-              "viewCur": 777958,
-              "viewDelta": 156,
-              "viewTodayDelta": 6588
+              "viewCur": 778104,
+              "viewDelta": 146,
+              "viewTodayDelta": 6734
             }
           ]
         },
         {
           "name": "杨博文冲刺2",
-          "totalTodayDelta": 25854,
+          "totalTodayDelta": 26433,
           "topToday": {
             "bvid": "BV1b68c6fE3M",
             "title": "【杨博文｜4k直拍】好想你好想你好想你好想你～",
             "owner": "关键时刻来瓶尖叫",
-            "delta": 9705
+            "delta": 9917
           },
           "videos": [
             {
               "bvid": "BV1W5gs6KEhr",
               "title": "【4K精剪】异常加载中 | 杨博文直拍 | 四天混剪 | 第肆象限演唱会",
               "owner": "underthepoplar",
-              "viewCur": 855795,
-              "viewDelta": 133,
-              "viewTodayDelta": 6802
+              "viewCur": 855946,
+              "viewDelta": 151,
+              "viewTodayDelta": 6953
             },
             {
               "bvid": "BV1aFbd6QE5Y",
               "title": "【杨博文】刺丨横屏直拍丨8.16&8.17丨4k",
               "owner": "Kismet丨杨博文",
-              "viewCur": 802215,
-              "viewDelta": 214,
-              "viewTodayDelta": 9347
+              "viewCur": 802431,
+              "viewDelta": 216,
+              "viewTodayDelta": 9563
             },
             {
               "bvid": "BV1b68c6fE3M",
               "title": "【杨博文｜4k直拍】好想你好想你好想你好想你～",
               "owner": "关键时刻来瓶尖叫",
-              "viewCur": 817615,
-              "viewDelta": 218,
-              "viewTodayDelta": 9705
+              "viewCur": 817827,
+              "viewDelta": 212,
+              "viewTodayDelta": 9917
             }
           ]
         }
@@ -109692,7 +109692,8 @@
           1791752409,
           1791753002,
           1791753602,
-          1791754202
+          1791754202,
+          1791754802
         ],
         "series": [
           {
@@ -109830,6 +109831,10 @@
               {
                 "t": 1791754202,
                 "cum": 206
+              },
+              {
+                "t": 1791754802,
+                "cum": 211
               }
             ]
           },
@@ -109968,6 +109973,10 @@
               {
                 "t": 1791754202,
                 "cum": 6664
+              },
+              {
+                "t": 1791754802,
+                "cum": 6816
               }
             ]
           },
@@ -110106,6 +110115,10 @@
               {
                 "t": 1791754202,
                 "cum": 6588
+              },
+              {
+                "t": 1791754802,
+                "cum": 6734
               }
             ]
           },
@@ -110244,6 +110257,10 @@
               {
                 "t": 1791754202,
                 "cum": 6664
+              },
+              {
+                "t": 1791754802,
+                "cum": 6816
               }
             ]
           },
@@ -110382,6 +110399,10 @@
               {
                 "t": 1791754202,
                 "cum": 6802
+              },
+              {
+                "t": 1791754802,
+                "cum": 6953
               }
             ]
           },
@@ -110520,6 +110541,10 @@
               {
                 "t": 1791754202,
                 "cum": 6588
+              },
+              {
+                "t": 1791754802,
+                "cum": 6734
               }
             ]
           },
@@ -110658,6 +110683,10 @@
               {
                 "t": 1791754202,
                 "cum": 6802
+              },
+              {
+                "t": 1791754802,
+                "cum": 6953
               }
             ]
           },
@@ -110796,6 +110825,10 @@
               {
                 "t": 1791754202,
                 "cum": 9347
+              },
+              {
+                "t": 1791754802,
+                "cum": 9563
               }
             ]
           },
@@ -110934,6 +110967,10 @@
               {
                 "t": 1791754202,
                 "cum": 9705
+              },
+              {
+                "t": 1791754802,
+                "cum": 9917
               }
             ]
           }
@@ -132302,6 +132339,11 @@
           "t": 1791754202,
           "d": "2026-10-12",
           "view": 1090691
+        },
+        {
+          "t": 1791754802,
+          "d": "2026-10-12",
+          "view": 1090696
         }
       ]
     },
@@ -139655,6 +139697,11 @@
           "t": 1791754202,
           "d": "2026-10-12",
           "view": 583527
+        },
+        {
+          "t": 1791754802,
+          "d": "2026-10-12",
+          "view": 583679
         }
       ]
     },
@@ -147008,6 +147055,11 @@
           "t": 1791754202,
           "d": "2026-10-12",
           "view": 777958
+        },
+        {
+          "t": 1791754802,
+          "d": "2026-10-12",
+          "view": 778104
         }
       ]
     },
@@ -154361,6 +154413,11 @@
           "t": 1791754202,
           "d": "2026-10-12",
           "view": 583527
+        },
+        {
+          "t": 1791754802,
+          "d": "2026-10-12",
+          "view": 583679
         }
       ]
     },
@@ -177034,6 +177091,11 @@
           "t": 1791754202,
           "d": "2026-10-12",
           "view": 855795
+        },
+        {
+          "t": 1791754802,
+          "d": "2026-10-12",
+          "view": 855946
         }
       ]
     },
@@ -184387,6 +184449,11 @@
           "t": 1791754202,
           "d": "2026-10-12",
           "view": 777958
+        },
+        {
+          "t": 1791754802,
+          "d": "2026-10-12",
+          "view": 778104
         }
       ]
     },
@@ -207060,6 +207127,11 @@
           "t": 1791754202,
           "d": "2026-10-12",
           "view": 855795
+        },
+        {
+          "t": 1791754802,
+          "d": "2026-10-12",
+          "view": 855946
         }
       ]
     },
@@ -219618,6 +219690,11 @@
           "t": 1791754202,
           "d": "2026-10-12",
           "view": 802215
+        },
+        {
+          "t": 1791754802,
+          "d": "2026-10-12",
+          "view": 802431
         }
       ]
     },
@@ -232176,10 +232253,15 @@
           "t": 1791754202,
           "d": "2026-10-12",
           "view": 817615
+        },
+        {
+          "t": 1791754802,
+          "d": "2026-10-12",
+          "view": 817827
         }
       ]
     }
   ],
-  "lastCollect": 1791754202,
+  "lastCollect": 1791754802,
   "collecting": false
 }
