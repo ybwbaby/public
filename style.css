@@ -117,6 +117,15 @@ td.num{font-variant-numeric:tabular-nums}
 .vid-title{font-weight:500;color:var(--text-light);white-space:nowrap;line-height:1.35;overflow:hidden}
 .bv{color:var(--muted);font-size:12px}
 
+/* 王橹杰列表铺开（不滚动） */
+.pk-col-wide .table-wrap{max-height:none}
+
+/* 卡片表头可排序 */
+.pk-col th.sortable{cursor:pointer;user-select:none;transition:color .15s}
+.pk-col th.sortable:hover{color:var(--accent)}
+.pk-col th.sortable[data-dir="asc"]::after{content:" ↑";color:var(--accent);font-size:11px}
+.pk-col th.sortable[data-dir="desc"]::after{content:" ↓";color:var(--accent);font-size:11px}
+
 /* 面板 */
 .panel{
   background:var(--glass);border:1px solid var(--glass-border);

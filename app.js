@@ -157,7 +157,7 @@ function buildSeries(h, granSec) {
 
 function renderCol(group) {
   const col = document.createElement('div');
-  col.className = 'pk-col';
+  col.className = group.name.includes('王橹杰') ? 'pk-col pk-col-wide' : 'pk-col';
 
   const top = group.topToday;
   const badgeColor = group.name.includes('王橹杰') ? '#2dd4bf' : '';
@@ -167,19 +167,6 @@ function renderCol(group) {
       <div class="top-owner">${top.owner ? 'UP主：' + escapeHtml(top.owner) : ''}</div>
       <div class="delta ${deltaClass(top.delta)}">播放 ${fmtDelta(top.delta)}</div>`
     : `<div class="muted">暂无数据</div>`;
-
-  const rows = (group.videos || [])
-    .map((v) => `
-      <tr>
-        <td class="title-cell">
-          <div class="vid-title" title="${escapeHtml(v.title)}">${escapeHtml(truncate(v.title, 14))}</div>
-          <div class="bv">${escapeHtml(v.bvid)}</div>
-        </td>
-        <td class="num">${fmt(v.viewCur)}</td>
-        <td class="num"><span class="delta ${deltaClass(v.viewDelta)}">${fmtDelta(v.viewDelta)}</span></td>
-        <td class="num"><span class="delta ${deltaClass(v.viewTodayDelta)}">${fmtDelta(v.viewTodayDelta)}</span></td>
-      </tr>`)
-    .join('');
 
   col.innerHTML = `
     <div class="col-head">
@@ -204,16 +191,62 @@ function renderCol(group) {
           <thead>
             <tr>
               <th class="title-col">视频</th>
-              <th>播放量</th>
-              <th>时段新增</th>
-              <th>当日新增</th>
+              <th class="sortable" data-sort="viewCur">播放量</th>
+              <th class="sortable" data-sort="viewDelta">时段新增</th>
+              <th class="sortable" data-sort="viewTodayDelta">当日新增</th>
             </tr>
           </thead>
-          <tbody>${rows}</tbody>
+          <tbody></tbody>
         </table>
       </div>
     </div>
   `;
+
+  const tbody = col.querySelector('tbody');
+  let sortKey = null;  // 当前排序列
+  let sortDir = -1;    // -1 降序，1 升序
+
+  const renderRows = () => {
+    let videos = [...(group.videos || [])];
+    if (sortKey) {
+      videos.sort((a, b) => {
+        const av = Number(a[sortKey]) || 0;
+        const bv = Number(b[sortKey]) || 0;
+        return (av - bv) * sortDir;
+      });
+    }
+    tbody.innerHTML = videos
+      .map((v) => `
+        <tr>
+          <td class="title-cell">
+            <div class="vid-title" title="${escapeHtml(v.title)}">${escapeHtml(truncate(v.title, 14))}</div>
+            <div class="bv">${escapeHtml(v.bvid)}</div>
+          </td>
+          <td class="num">${fmt(v.viewCur)}</td>
+          <td class="num"><span class="delta ${deltaClass(v.viewDelta)}">${fmtDelta(v.viewDelta)}</span></td>
+          <td class="num"><span class="delta ${deltaClass(v.viewTodayDelta)}">${fmtDelta(v.viewTodayDelta)}</span></td>
+        </tr>`)
+      .join('');
+  };
+  renderRows();
+
+  col.querySelectorAll('th.sortable').forEach((th) => {
+    th.addEventListener('click', () => {
+      const key = th.getAttribute('data-sort');
+      if (sortKey === key) {
+        sortDir = -sortDir;
+      } else {
+        sortKey = key;
+        sortDir = -1; // 首次点击默认降序
+      }
+      col.querySelectorAll('th.sortable').forEach((x) => {
+        const active = x.getAttribute('data-sort') === sortKey;
+        x.setAttribute('data-dir', active ? (sortDir < 0 ? 'desc' : 'asc') : '');
+      });
+      renderRows();
+    });
+  });
+
   return col;
 }
 
