@@ -219,7 +219,7 @@ function renderCol(group) {
       .map((v) => `
         <tr>
           <td class="title-cell">
-            <div class="vid-title" title="${escapeHtml(v.title)}">${escapeHtml(truncate(v.title, 18))}</div>
+            <div class="vid-title" title="${escapeHtml(v.title)}">${escapeHtml(truncate(v.title, 15))}</div>
             <div class="bv">${escapeHtml(v.bvid)}</div>
           </td>
           <td class="num">${fmt(v.viewCur)}</td>
