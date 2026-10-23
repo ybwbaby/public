@@ -283,6 +283,8 @@ function renderCols() {
       solo.push(buildCol('杨博文', g.videos, '冲刺2'));
     } else if (g.name === '王橹杰单刷') {
       solo.push(buildCol('王橹杰', g.videos, '单刷'));
+    } else if (g.name === '张桂源') {
+      solo.push(buildCol('张桂源', g.videos, '单刷'));
     } else {
       pk.push(g);
     }
