@@ -162,9 +162,7 @@ function renderCol(group) {
   const top = group.topToday;
   const badgeStyle = group.name.includes('王橹杰')
     ? 'background:rgba(45,212,191,.12);color:#2dd4bf'
-    : group.name.includes('张桂源')
-      ? 'background:rgba(250,204,21,.12);color:#facc15'
-      : '';
+    : '';
   const topHtml = top
     ? `
       <div class="top-title" title="${escapeHtml(top.title)}">${escapeHtml(truncate(top.title, 20))}</div>
@@ -287,8 +285,6 @@ function renderCols() {
       solo.push(buildCol('杨博文', g.videos, '冲刺2'));
     } else if (g.name === '王橹杰单刷') {
       solo.push(buildCol('王橹杰', g.videos, '单刷'));
-    } else if (g.name === '张桂源') {
-      solo.push(buildCol('张桂源', g.videos, '单刷'));
     } else {
       pk.push(g);
     }
@@ -348,9 +344,7 @@ function renderChart() {
     const map = new Map(s.buckets.map((b) => [b.t, b.delta]));
     const color = (s.group || '').includes('王橹杰')
       ? '#2dd4bf'
-      : (s.group || '').includes('张桂源')
-        ? '#facc15'
-        : '#f472b6';
+      : '#f472b6';
     return {
       name: truncate(s.name, 20),
       type: 'line',
