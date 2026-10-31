@@ -160,7 +160,9 @@ function renderCol(group) {
   col.className = group.name.includes('王橹杰') ? 'pk-col pk-col-wide' : 'pk-col';
 
   const top = group.topToday;
-  const badgeColor = group.name.includes('王橹杰') ? '#2dd4bf' : '';
+  const badgeStyle = group.name.includes('王橹杰')
+    ? 'background:rgba(45,212,191,.12);color:#2dd4bf'
+    : '';
   const topHtml = top
     ? `
       <div class="top-title" title="${escapeHtml(top.title)}">${escapeHtml(truncate(top.title, 20))}</div>
@@ -171,7 +173,7 @@ function renderCol(group) {
   col.innerHTML = `
     <div class="col-head">
       <div class="col-name">${escapeHtml(group.name)}</div>
-      <div class="col-badge"${badgeColor ? ` style="background:rgba(45,212,191,.12);color:${badgeColor}"` : ''}>${colBadge(group)}</div>
+      <div class="col-badge"${badgeStyle ? ` style="${badgeStyle}"` : ''}>${colBadge(group)}</div>
     </div>
 
     <div class="metric-block">
@@ -340,7 +342,9 @@ function renderChart() {
 
   const series = rawSeries.map((s) => {
     const map = new Map(s.buckets.map((b) => [b.t, b.delta]));
-    const color = (s.group || '').includes('王橹杰') ? '#2dd4bf' : '#f472b6';
+    const color = (s.group || '').includes('王橹杰')
+      ? '#2dd4bf'
+      : '#f472b6';
     return {
       name: truncate(s.name, 20),
       type: 'line',
