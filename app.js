@@ -141,14 +141,18 @@ function buildSeries(h, granSec) {
   }
   const keys = Array.from(last.keys()).sort((a, b) => a - b);
   let prevView = null;
+  let prevKey = null;
   for (const b of keys) {
     const p = last.get(b);
+    // 仅相邻桶才计算涨幅；采集中断造成的缺口不把累计涨幅堆到缺口后那一桶（否则出现尖峰）
+    const contiguous = prevKey !== null && b - prevKey === 1;
     buckets.push({
       t: b * granSec - TZ_OFFSET, // 桶起始时间（北京时间 0 点对齐）
       d: p.d,
-      delta: prevView === null ? null : p.view - prevView,
+      delta: contiguous ? p.view - prevView : null,
     });
     prevView = p.view;
+    prevKey = b;
   }
   return { name: h.title, group: h.group, buckets };
 }
